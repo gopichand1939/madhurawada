@@ -139,31 +139,50 @@ export default function CustomerStorefront() {
   }, []);
 
   useEffect(() => {
-    let lastScrollY = typeof window !== 'undefined' ? window.scrollY : 0;
+    let lastScrollY = typeof window !== 'undefined' ? Math.max(0, window.scrollY) : 0;
+    let accumulatedDelta = 0;
     let ticking = false;
 
     const handleScroll = () => {
-      const currentScrollY = window.scrollY;
+      const currentScrollY = Math.max(0, window.scrollY);
 
       // Keep header visible while mobile drawer is open
       if (mobileMenuOpen) {
         setHeaderVisible(true);
+        lastScrollY = currentScrollY;
+        accumulatedDelta = 0;
         ticking = false;
         return;
       }
 
-      if (currentScrollY <= 45) {
-        // Near the top of the page
+      // Always visible at the very top of the page
+      if (currentScrollY <= 15) {
         setHeaderVisible(true);
-      } else if (currentScrollY > lastScrollY && currentScrollY - lastScrollY > 6) {
-        // Scrolling DOWN -> smoothly move header up out of view
+        lastScrollY = currentScrollY;
+        accumulatedDelta = 0;
+        ticking = false;
+        return;
+      }
+
+      const delta = currentScrollY - lastScrollY;
+
+      // If user reversed scroll direction, reset the accumulator
+      if ((delta > 0 && accumulatedDelta < 0) || (delta < 0 && accumulatedDelta > 0)) {
+        accumulatedDelta = 0;
+      }
+
+      accumulatedDelta += delta;
+      lastScrollY = currentScrollY;
+
+      // Scrolling DOWN -> immediately hide header
+      if (accumulatedDelta > 8) {
         setHeaderVisible(false);
-      } else if (currentScrollY < lastScrollY && lastScrollY - currentScrollY > 6) {
-        // Scrolling UP -> smoothly reveal header
+      }
+      // Scrolling UP -> immediately reveal header
+      else if (accumulatedDelta < -5) {
         setHeaderVisible(true);
       }
 
-      lastScrollY = currentScrollY > 0 ? currentScrollY : 0;
       ticking = false;
     };
 
@@ -404,8 +423,8 @@ export default function CustomerStorefront() {
     >
       {/* Main Moving Sticky Header */}
       <header
-        className={`site-header sticky top-0 z-40 bg-white/95 backdrop-blur-md border-b border-stone-200 transition-transform duration-300 ease-in-out ${
-          headerVisible ? 'translate-y-0 shadow-xs' : '-translate-y-full shadow-none'
+        className={`site-header sticky top-0 z-40 bg-white/95 backdrop-blur-md border-b border-stone-200 ${
+          headerVisible ? 'header-visible shadow-xs' : 'header-hidden shadow-none'
         }`}
       >
         <div className="flex items-center justify-between w-full gap-1.5 sm:gap-4 min-w-0">
