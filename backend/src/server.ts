@@ -18,10 +18,11 @@ const app = express();
 const hash = (v: string) => createHash('sha256').update(v).digest('hex');
 const isAllowedOrigin = (reqOrigin?: string) => {
   if (!reqOrigin) return true;
-  if (/^http:\/\/localhost(:\d+)?$/.test(reqOrigin)) return true;
-  if (/^http:\/\/127\.0\.0\.1(:\d+)?$/.test(reqOrigin)) return true;
-  if (process.env.FRONTEND_ORIGIN && reqOrigin === process.env.FRONTEND_ORIGIN) return true;
-  return false;
+  if (/^https?:\/\/localhost(:\d+)?$/.test(reqOrigin)) return true;
+  if (/^https?:\/\/127\.0\.0\.1(:\d+)?$/.test(reqOrigin)) return true;
+  if (!process.env.FRONTEND_ORIGIN || process.env.FRONTEND_ORIGIN === '*') return true;
+  const allowed = process.env.FRONTEND_ORIGIN.split(',').map((v) => v.trim());
+  return allowed.includes(reqOrigin);
 };
 
 app.use(helmet());
