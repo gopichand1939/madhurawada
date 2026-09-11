@@ -1054,4 +1054,5 @@ app.use((err: unknown, _req: Request, res: Response, _next: NextFunction) => {
   res.status(400).json({ error: 'Request could not complete. Check input and record relationships.' });
 });
 
-app.listen(Number(process.env.PORT) || 4000, () => console.log('Kitchen API listening on port 4000'));
+const port = Number(process.env.PORT) || 4000;
+app.listen(port, () => console.log(`Kitchen API listening on port ${port}`));
