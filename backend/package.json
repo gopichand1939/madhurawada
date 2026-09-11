@@ -4,7 +4,7 @@
   "type": "module",
   "scripts": {
     "dev": "tsx watch src/server.ts",
-    "build": "prisma generate && tsc",
+    "build": "npm install --include=dev && npx prisma generate && npx tsc",
     "start": "node dist/server.js",
     "db:generate": "prisma generate",
     "db:migrate": "prisma migrate deploy",
@@ -22,6 +22,8 @@
     "express-rate-limit": "^8.2.1",
     "helmet": "^8.1.0",
     "multer": "^2.0.2",
+    "prisma": "^6.19.0",
+    "typescript": "^5.9.3",
     "zod": "^3.25.76"
   },
   "devDependencies": {
