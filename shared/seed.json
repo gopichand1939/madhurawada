@@ -1,0 +1,429 @@
+{
+  "kitchen": {
+    "name": "Madhurawada Home Kitchen",
+    "tagline": "Authentic Homestyle Andhra Meals & Tiffins",
+    "description": "Thoughtfully cooked in small batches by your neighborhood home chef using pristine ingredients.",
+    "address": "Madhurawada, Visakhapatnam, Andhra Pradesh 530041",
+    "radius": 3,
+    "hours": "Breakfast: 7:30 AM - 10:30 AM | Lunch: 12:00 PM - 3:00 PM | Dinner: 7:00 PM - 10:00 PM",
+    "color": "#e65100",
+    "acceptingOrders": true
+  },
+  "hero": [
+    {
+      "id": "hero-1",
+      "name": "Authentic Homestyle Andhra Comfort Food",
+      "description": "Made fresh with pure ground spices, cold-pressed oils, and traditional family recipes. Delivered hot around Madhurawada.",
+      "active": true,
+      "sortOrder": 0,
+      "cta": "Order Fresh Meals",
+      "image": "https://images.unsplash.com/photo-1589301760014-d929f3979dbc?auto=format&fit=crop&w=1200&q=80"
+    }
+  ],
+  "banners": [
+    {
+      "id": "banner-1",
+      "name": "Direct Order Special Offer!",
+      "description": "Use code WELCOME10 for 10% OFF on all direct pre-orders above ₹199.",
+      "active": true,
+      "sortOrder": 0,
+      "image": "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=1200&q=80",
+      "cta": "Claim Offer",
+      "link": "/menu"
+    },
+    {
+      "id": "banner-2",
+      "name": "Daily IT SEZ Lunch Subscriptions Available",
+      "description": "Hygienic, home-cooked thalis delivered right to your office desk at Hill No. 2 & 3.",
+      "active": true,
+      "sortOrder": 1,
+      "image": "https://images.unsplash.com/photo-1610192244261-3f33de3f55e4?auto=format&fit=crop&w=1200&q=80",
+      "cta": "View Meal Plans",
+      "link": "#contact"
+    }
+  ],
+  "about": [
+    {
+      "id": "about-1",
+      "name": "Authentic Andhra Home Cooking Tradition",
+      "description": "Operating right from our family home in Madhurawada. Every meal is cooked fresh in small batches with pure ground spices, cold-pressed oils, and traditional recipes passed down through generations with utmost love, hygiene, and authenticity.",
+      "active": true,
+      "sortOrder": 0,
+      "image": "https://images.unsplash.com/photo-1556910103-1c02745aae4d?auto=format&fit=crop&w=800&q=80"
+    }
+  ],
+  "sections": [
+    {
+      "id": "breakfast",
+      "name": "Breakfast Tiffins",
+      "active": true,
+      "sortOrder": 0
+    },
+    {
+      "id": "lunch",
+      "name": "Lunch Thalis",
+      "active": true,
+      "sortOrder": 1
+    },
+    {
+      "id": "biryani-rice",
+      "name": "Biryani & Rice Bowls",
+      "active": true,
+      "sortOrder": 2
+    },
+    {
+      "id": "snacks",
+      "name": "Evening Snacks",
+      "active": true,
+      "sortOrder": 3
+    },
+    {
+      "id": "drinks-desserts",
+      "name": "Beverages & Desserts",
+      "active": true,
+      "sortOrder": 4
+    }
+  ],
+  "categories": [
+    {
+      "id": "south-tiffins",
+      "name": "South Indian Tiffins",
+      "sectionId": "breakfast",
+      "active": true,
+      "sortOrder": 0
+    },
+    {
+      "id": "andhra-meals",
+      "name": "Andhra Meals & Thalis",
+      "sectionId": "lunch",
+      "active": true,
+      "sortOrder": 0
+    },
+    {
+      "id": "biryani-specials",
+      "name": "Biryani Specialties",
+      "sectionId": "biryani-rice",
+      "active": true,
+      "sortOrder": 0
+    },
+    {
+      "id": "local-snacks",
+      "name": "Andhra Evening Snacks",
+      "sectionId": "snacks",
+      "active": true,
+      "sortOrder": 0
+    },
+    {
+      "id": "crispy-millet-snacks",
+      "name": "Crispy Millet Snacks",
+      "sectionId": "snacks",
+      "active": true,
+      "sortOrder": 1
+    },
+    {
+      "id": "beverages",
+      "name": "Cold Majjiga & Sweets",
+      "sectionId": "drinks-desserts",
+      "active": true,
+      "sortOrder": 2
+    }
+  ],
+  "items": [
+    {
+      "id": "item-idli",
+      "name": "Steamed Idli with Chutney & Podi (3 Pcs)",
+      "description": "Piping hot, soft steamed rice cakes served with fresh coconut chutney, ginger chutney, and home-ground gun powder (podi) with ghee.",
+      "categoryId": "south-tiffins",
+      "sectionId": "breakfast",
+      "price": 60,
+      "veg": true,
+      "active": true,
+      "bestseller": true,
+      "sortOrder": 0,
+      "prepTime": 15,
+      "image": "https://images.unsplash.com/photo-1589301760014-d929f3979dbc?auto=format&fit=crop&w=600&q=80"
+    },
+    {
+      "id": "item-masala-dosa",
+      "name": "Crispy Ghee Masala Dosa",
+      "description": "Golden fermented rice-crepe roasted in pure cow ghee, stuffed with spiced potato potato curry, served with sambar and fresh peanut chutney.",
+      "categoryId": "south-tiffins",
+      "sectionId": "breakfast",
+      "price": 90,
+      "veg": true,
+      "active": true,
+      "bestseller": true,
+      "sortOrder": 1,
+      "prepTime": 20,
+      "image": "https://images.unsplash.com/photo-1668236543090-82eba5ee5976?auto=format&fit=crop&w=600&q=80"
+    },
+    {
+      "id": "item-poori",
+      "name": "Fluffy Poori with Potato Sagu (3 Pcs)",
+      "description": "Golden deep-fried whole wheat puffed bread served with rich, aromatic potato-chana sagu.",
+      "categoryId": "south-tiffins",
+      "sectionId": "breakfast",
+      "price": 80,
+      "veg": true,
+      "active": true,
+      "bestseller": false,
+      "sortOrder": 2,
+      "prepTime": 15,
+      "image": "https://images.unsplash.com/photo-1626777552726-4a6b54c97e46?auto=format&fit=crop&w=600&q=80"
+    },
+    {
+      "id": "item-veg-meals",
+      "name": "Authentic Andhra Veg Meals Thali",
+      "description": "Steamed Sona Masoori Rice, Mudda Pappu (Lentils), Homemade Ghee, Seasonal Veg Fry, Spicy Pulusu, Sambar, Rasam, Fresh Majjiga (Curd), & Mango Pickle.",
+      "categoryId": "andhra-meals",
+      "sectionId": "lunch",
+      "price": 150,
+      "veg": true,
+      "active": true,
+      "bestseller": true,
+      "sortOrder": 0,
+      "prepTime": 25,
+      "image": "https://images.unsplash.com/photo-1610192244261-3f33de3f55e4?auto=format&fit=crop&w=600&q=80"
+    },
+    {
+      "id": "item-chicken-meals",
+      "name": "Homestyle Andhra Chicken Curry Meal",
+      "description": "Country-style Andhra spicy chicken gravy cooked with roasted poppy seeds & coconut, served with Rice, Pappu, Veg Curry, Sambar, Rasam & Curd.",
+      "categoryId": "andhra-meals",
+      "sectionId": "lunch",
+      "price": 220,
+      "veg": false,
+      "active": true,
+      "bestseller": true,
+      "sortOrder": 1,
+      "prepTime": 30,
+      "image": "https://images.unsplash.com/photo-1565557623262-b51c2513a641?auto=format&fit=crop&w=600&q=80"
+    },
+    {
+      "id": "item-chicken-biryani",
+      "name": "Hyderabadi Chicken Dum Biryani",
+      "description": "Long-grain Basmati rice slow-dum cooked with succulent marinated chicken pieces, whole spices, saffron, served with Onion Raita & Mirchi ka Salan.",
+      "categoryId": "biryani-specials",
+      "sectionId": "biryani-rice",
+      "price": 240,
+      "veg": false,
+      "active": true,
+      "bestseller": true,
+      "sortOrder": 0,
+      "prepTime": 30,
+      "image": "https://images.unsplash.com/photo-1563379091339-03b21ab4a4f8?auto=format&fit=crop&w=600&q=80"
+    },
+    {
+      "id": "item-paneer-biryani",
+      "name": "Special Paneer Butter Biryani",
+      "description": "Aromatic Basmati rice tossed with marinated cottage cheese cubes, rich herbs, and ghee, served with Creamy Raita.",
+      "categoryId": "biryani-specials",
+      "sectionId": "biryani-rice",
+      "price": 210,
+      "veg": true,
+      "active": true,
+      "bestseller": false,
+      "sortOrder": 1,
+      "prepTime": 25,
+      "image": "https://images.unsplash.com/photo-1645177628172-a94c1f96e6db?auto=format&fit=crop&w=600&q=80"
+    },
+    {
+      "id": "item-punugulu",
+      "name": "Hot Vizag Punugulu with Peanut Chutney",
+      "description": "Crispy street-style rice batter fritters served piping hot with tangy tomato chutney and spicy peanut dip.",
+      "categoryId": "local-snacks",
+      "sectionId": "snacks",
+      "price": 50,
+      "veg": true,
+      "active": true,
+      "bestseller": true,
+      "sortOrder": 0,
+      "prepTime": 15,
+      "image": "https://images.unsplash.com/photo-1601050690597-df0568f70950?auto=format&fit=crop&w=600&q=80"
+    },
+    {
+      "id": "item-majjiga",
+      "name": "Chilled Spice Buttermilk (Challa / Majjiga)",
+      "description": "Refreshing churned yogurt drink flavored with green chilies, ginger, curry leaves, and roasted cumin.",
+      "categoryId": "beverages",
+      "sectionId": "drinks-desserts",
+      "price": 30,
+      "veg": true,
+      "active": true,
+      "bestseller": true,
+      "sortOrder": 0,
+      "prepTime": 5,
+      "image": "https://images.unsplash.com/photo-1556881286-fc6915169721?auto=format&fit=crop&w=600&q=80"
+    },
+    {
+      "id": "item-millet-chekodi",
+      "name": "Millet Chekodi",
+      "description": "Crunchy rings made with ragi (finger millet) or jowar (sorghum) flour and cumin. Roasted to golden perfection.",
+      "categoryId": "crispy-millet-snacks",
+      "sectionId": "snacks",
+      "price": 95,
+      "veg": true,
+      "active": true,
+      "bestseller": true,
+      "sortOrder": 0,
+      "prepTime": 10,
+      "image": "/snacks/millet-chekodi.jpg"
+    },
+    {
+      "id": "item-millet-murukku",
+      "name": "Millet Murukku / Janthikalu",
+      "description": "Rice flour alternative using bajra (pearl millet) or foxtail millet. Spiced with carom and white sesame.",
+      "categoryId": "crispy-millet-snacks",
+      "sectionId": "snacks",
+      "price": 110,
+      "veg": true,
+      "active": true,
+      "bestseller": true,
+      "sortOrder": 1,
+      "prepTime": 10,
+      "image": "/snacks/millet-murukku.jpg"
+    },
+    {
+      "id": "item-millet-chekkalu",
+      "name": "Millet Chekkalu / Pappu Chellu",
+      "description": "Flat fried crackers made with jowar, chana dal, and curry leaves. Crisp, savory, and wholesome.",
+      "categoryId": "crispy-millet-snacks",
+      "sectionId": "snacks",
+      "price": 105,
+      "veg": true,
+      "active": true,
+      "bestseller": false,
+      "sortOrder": 2,
+      "prepTime": 10,
+      "image": "/snacks/millet-chekkalu.jpg"
+    },
+    {
+      "id": "item-millet-ribbon-pakoda",
+      "name": "Millet Ribbon Pakoda",
+      "description": "Crispy strips made using a mix of ragi and besan (gram flour), aromatic spices, and cold-pressed oil.",
+      "categoryId": "crispy-millet-snacks",
+      "sectionId": "snacks",
+      "price": 100,
+      "veg": true,
+      "active": true,
+      "bestseller": false,
+      "sortOrder": 3,
+      "prepTime": 10,
+      "image": "/snacks/millet-ribbon-pakoda.jpg"
+    },
+    {
+      "id": "item-millet-karapusa",
+      "name": "Millet Karapusa / Sev",
+      "description": "Thin, crunchy noodles made with thin foxtail millet flour and ajwain. Light, fragrant, and snackable.",
+      "categoryId": "crispy-millet-snacks",
+      "sectionId": "snacks",
+      "price": 95,
+      "veg": true,
+      "active": true,
+      "bestseller": false,
+      "sortOrder": 4,
+      "prepTime": 10,
+      "image": "/snacks/millet-karapusa.jpg"
+    },
+    {
+      "id": "item-millet-sakinalu",
+      "name": "Millet Sakinalu",
+      "description": "Traditional concentric rings made using finger millet flour (popular in Telangana & Andhra), laced with sesame seeds.",
+      "categoryId": "crispy-millet-snacks",
+      "sectionId": "snacks",
+      "price": 120,
+      "veg": true,
+      "active": true,
+      "bestseller": true,
+      "sortOrder": 5,
+      "prepTime": 10,
+      "image": "/snacks/millet-sakinalu.jpg"
+    },
+    {
+      "id": "item-millet-namakpara",
+      "name": "Millet Namakpara",
+      "description": "Diamond-shaped savory crackers made with whole wheat and barnyard millet, lightly salted with roasted ajwain.",
+      "categoryId": "crispy-millet-snacks",
+      "sectionId": "snacks",
+      "price": 90,
+      "veg": true,
+      "active": true,
+      "bestseller": false,
+      "sortOrder": 6,
+      "prepTime": 10,
+      "image": "/snacks/millet-namakpara.jpg"
+    },
+    {
+      "id": "item-millet-mixture",
+      "name": "Millet Mixture",
+      "description": "A combination of millet sev, fried peanuts, cashews, and curry leaves. The ultimate teatime crunch.",
+      "categoryId": "crispy-millet-snacks",
+      "sectionId": "snacks",
+      "price": 125,
+      "veg": true,
+      "active": true,
+      "bestseller": true,
+      "sortOrder": 7,
+      "prepTime": 10,
+      "image": "/snacks/millet-mixture.jpg"
+    }
+  ],
+  "variants": [],
+  "addon-groups": [],
+  "addons": [],
+  "testimonials": [
+    {
+      "id": "test-1",
+      "name": "Ravi Kumar (Mithilapuri Vuda Colony)",
+      "description": "The Andhra Chicken Meal tastes exactly like what my mother cooks back in West Godavari. Super clean packaging and zero oiliness!",
+      "rating": 5,
+      "active": true,
+      "sortOrder": 0
+    },
+    {
+      "id": "test-2",
+      "name": "Priyanka S. (IT SEZ Employee)",
+      "description": "I subscribed to their lunch thali box. It arrives warm right at 1:00 PM every weekday. Healthy, tasty, and reasonably priced.",
+      "rating": 5,
+      "active": true,
+      "sortOrder": 1
+    }
+  ],
+  "coupons": [
+    {
+      "id": "coup-1",
+      "name": "WELCOME10",
+      "code": "WELCOME10",
+      "description": "Get 10% OFF on direct orders above ₹199",
+      "active": true,
+      "sortOrder": 0
+    }
+  ],
+  "contact": [
+    {
+      "id": "contact-1",
+      "name": "Madhurawada Home Kitchen Operations",
+      "description": "Madhurawada, Visakhapatnam, Andhra Pradesh 530041. Phone / WhatsApp: +91 9704156957. Email: orders@madhurawadakitchen.in",
+      "active": true,
+      "sortOrder": 0
+    }
+  ],
+  "footer": [
+    {
+      "id": "footer-1",
+      "name": "Madhurawada Home Kitchen",
+      "description": "Pure home-cooked happiness. Small batch cooking with love, hygienic preparation, and fast local delivery in Madhurawada.",
+      "active": true,
+      "sortOrder": 0
+    }
+  ],
+  "seo": [
+    {
+      "id": "seo-home",
+      "name": "Madhurawada Home Kitchen | Authentic Andhra Meals & Tiffins",
+      "description": "Order home-cooked Andhra meals, tiffins, and biryani online in Madhurawada, Visakhapatnam.",
+      "active": true,
+      "sortOrder": 0
+    }
+  ]
+}
