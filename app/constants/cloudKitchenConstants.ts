@@ -6,7 +6,12 @@
 
 export const APP_CONFIG = {
   KITCHEN_SLUG: 'madhurawada',
-  API_BASE_URL: process.env.VITE_API_BASE_URL || process.env.NEXT_PUBLIC_API_BASE_URL || 'http://localhost:4000',
+  // Local development fallback: 'http://localhost:4000'
+  // Deployed production backend (Render):
+  API_BASE_URL:
+    process.env.VITE_API_BASE_URL ||
+    process.env.NEXT_PUBLIC_API_BASE_URL ||
+    'https://madhurawada-backend.onrender.com',
   CLOUDINARY: {
     CLOUD_NAME: 'dad5lcdoy',
     API_KEY: '111742125773621',
