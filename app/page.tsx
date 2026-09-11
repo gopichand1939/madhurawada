@@ -57,7 +57,7 @@ export default function CustomerStorefront() {
   const [detailItem, setDetailItem] = useState<RecordData | null>(null);
   const [error, setError] = useState('');
   const [pending, setPending] = useState(false);
-  const [orderResult, setOrderResult] = useState<{ id: string; status: string; trackingToken?: string } | null>(null);
+  const [orderResult, setOrderResult] = useState<{ id: string; status: string; trackingToken?: string; note?: string } | null>(null);
   const [trackingId, setTrackingId] = useState('');
   const [trackingData, setTrackingData] = useState<any>(null);
   const [trackingLoading, setTrackingLoading] = useState(false);
