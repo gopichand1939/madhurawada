@@ -27,11 +27,23 @@ export type Content = {
 
 export const sample = seed as unknown as Content;
 
-const API_BASE_URL = process.env.VITE_API_BASE_URL || process.env.NEXT_PUBLIC_API_BASE_URL || 'http://localhost:4000';
+// In browser client, always use relative same-origin /api/... calls so all requests go
+// cleanly through the Next.js / Netlify proxy (no CORS issues, no referrer policy restrictions,
+// and no direct backend URLs exposed in browser DevTools).
+const API_BASE_URL = typeof window !== 'undefined'
+  ? ''
+  : (
+      process.env.BACKEND_ORIGIN ||
+      process.env.NEXT_PUBLIC_API_BASE_URL ||
+      process.env.VITE_API_BASE_URL ||
+      'http://localhost:4000'
+    ).trim().replace(/\/+$/, '');
 
 export async function api(url: string, method = 'GET', body?: unknown, customHeaders?: Record<string, string>): Promise<any> {
   const cleanUrl = url.replace(/^\/?api\//, '');
-  const fullUrl = url.startsWith('http') ? url : `${API_BASE_URL}/api/${cleanUrl}`;
+  const fullUrl = url.startsWith('http://') || url.startsWith('https://')
+    ? url
+    : (API_BASE_URL ? `${API_BASE_URL}/api/${cleanUrl}` : `/api/${cleanUrl}`);
 
   const r = await fetch(fullUrl, {
     method,

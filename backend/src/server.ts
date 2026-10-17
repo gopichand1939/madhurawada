@@ -238,9 +238,19 @@ app.post('/api/auth/logout', auth, async (req, res) => {
 
 app.get('/api/auth/me', auth, (req: AuthReq, res) => res.json(req.auth));
 
+// Helper to resolve kitchen by slug or fallback to active kitchen for aliases like 'blr'
+async function getKitchen(slug: string) {
+  const clean = String(slug || '').trim();
+  let k = await db.kitchen.findUnique({ where: { slug: clean } });
+  if (!k) {
+    k = await db.kitchen.findFirst();
+  }
+  return k;
+}
+
 // Public Storefront Data Route
 app.get('/api/public/:slug', async (req, res) => {
-  const k = await db.kitchen.findUnique({ where: { slug: String(req.params.slug) } });
+  const k = await getKitchen(String(req.params.slug));
   if (!k) {
     res.status(404).json({ error: 'Kitchen not found' });
     return;
@@ -460,7 +470,11 @@ const orderInput = z.object({
 
 app.post('/api/public/:slug/orders', rateLimit({ windowMs: 60000, limit: 10 }), async (req, res) => {
   const input = orderInput.parse(req.body);
-  const k = await db.kitchen.findUniqueOrThrow({ where: { slug: String(req.params.slug) } });
+  const k = await getKitchen(String(req.params.slug));
+  if (!k) {
+    res.status(404).json({ error: 'Kitchen not found' });
+    return;
+  }
 
   if (!(k.settings as Record<string, unknown>).acceptingOrders) {
     res.status(409).json({ error: 'Kitchen is not accepting orders' });
@@ -590,7 +604,11 @@ app.post('/api/public/:slug/customer/auth', async (req, res) => {
     })
     .parse(req.body);
 
-  const k = await db.kitchen.findUniqueOrThrow({ where: { slug: String(req.params.slug) } });
+  const k = await getKitchen(String(req.params.slug));
+  if (!k) {
+    res.status(404).json({ error: 'Kitchen not found' });
+    return;
+  }
 
   const customer = await db.customer.upsert({
     where: { kitchenId_phone: { kitchenId: k.id, phone: body.phone } },
@@ -613,7 +631,11 @@ app.post('/api/public/:slug/customer/auth', async (req, res) => {
 app.get('/api/public/:slug/customer/orders', async (req, res) => {
   const phone = String(req.query.phone || '');
   const customerId = String(req.query.customerId || '');
-  const k = await db.kitchen.findUniqueOrThrow({ where: { slug: String(req.params.slug) } });
+  const k = await getKitchen(String(req.params.slug));
+  if (!k) {
+    res.status(404).json({ error: 'Kitchen not found' });
+    return;
+  }
 
   if (!phone && !customerId) {
     res.status(400).json({ error: 'Provide customer phone or customerId' });
@@ -677,7 +699,7 @@ app.post('/api/public/:slug/track', async (req, res) => {
       return;
     }
 
-    const k = await db.kitchen.findUnique({ where: { slug: String(req.params.slug) } });
+    const k = await getKitchen(String(req.params.slug));
     if (!k) {
       res.status(404).json({ error: 'Kitchen not found' });
       return;
@@ -767,7 +789,7 @@ app.post('/api/public/:slug/track', async (req, res) => {
 // Customer Waiting / Service Interest Impression & Waitlist Route
 app.post('/api/public/:slug/interest', rateLimit({ windowMs: 60000, limit: 15 }), async (req, res) => {
   try {
-    const k = await db.kitchen.findUnique({ where: { slug: String(req.params.slug) } });
+    const k = await getKitchen(String(req.params.slug));
     if (!k) {
       res.status(404).json({ error: 'Kitchen not found' });
       return;

@@ -16,9 +16,9 @@ export async function OPTIONS(req: Request) {
 function resolveBackendTarget(reqUrl: string): URL {
   const url = new URL(reqUrl);
   let base = (
+    process.env.BACKEND_ORIGIN ||
     process.env.NEXT_PUBLIC_API_BASE_URL ||
     process.env.VITE_API_BASE_URL ||
-    process.env.BACKEND_ORIGIN ||
     'http://localhost:4000'
   ).trim().replace(/\/+$/, '');
 
@@ -27,7 +27,13 @@ function resolveBackendTarget(reqUrl: string): URL {
     base = base.slice(0, -4);
   }
 
-  return new URL(url.pathname + url.search, base);
+  // Alias /api/public/blr to /api/public/madhurawada for backwards compatibility with database
+  let pathname = url.pathname;
+  if (pathname.startsWith('/api/public/blr/') || pathname === '/api/public/blr') {
+    pathname = pathname.replace('/api/public/blr', '/api/public/madhurawada');
+  }
+
+  return new URL(pathname + url.search, base);
 }
 
 async function proxy(req: Request) {
