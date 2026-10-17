@@ -20,14 +20,14 @@ export const APP_CONFIG = {
 };
 
 export const KITCHEN_DEFAULT_BRANDING = {
-  name: 'Madhurawada Home Kitchen',
-  tagline: 'Authentic Homestyle Andhra Meals & Tiffins',
-  description: 'Pure home-cooked happiness cooked in small batches in Madhurawada.',
-  address: 'Madhurawada, Visakhapatnam, Andhra Pradesh 530041',
-  phone: '+91 9704156957',
-  whatsapp: '+91 9704156957',
-  email: 'orders@madhurawadakitchen.in',
-  radius: 3,
+  name: 'BLR Home Foods',
+  tagline: 'Your Own Home',
+  description: 'Pure home-cooked happiness cooked with love — BLR Home Foods, Your Own Home.',
+  address: 'Rajanukunte, Bangalore North, Bengaluru, Karnataka 560064',
+  phone: '+91 7760902191',
+  whatsapp: '+91 7760902191',
+  email: 'orders@blrhomefoods.in',
+  radius: 6,
   hours: 'Breakfast: 7:30 AM - 10:30 AM | Lunch: 12:00 PM - 3:00 PM | Dinner: 7:00 PM - 10:00 PM',
   primaryColor: '#e65100',
   acceptingOrders: true,

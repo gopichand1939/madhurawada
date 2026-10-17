@@ -1,6 +1,6 @@
 'use client';
 import { useEffect, useState } from 'react';
-import { ArrowUpRight, UtensilsCrossed, LayoutDashboard, ShoppingBag, BookOpen, Settings, Image, Users, Shield, Plus, Pencil, Trash2, Search, LogOut, Check, Upload, BarChart3, Activity, Smartphone, Monitor, Tablet, Eye, MousePointerClick, Clock, ArrowRight, Heart, Calendar, MessageSquare, Zap } from 'lucide-react';
+import { ArrowUpRight, UtensilsCrossed, LayoutDashboard, ShoppingBag, BookOpen, Settings, Image, Users, Shield, Plus, Pencil, Trash2, Search, LogOut, Check, Upload, BarChart3, Activity, Smartphone, Monitor, Tablet, Eye, MousePointerClick, Clock, ArrowRight, Heart, Calendar, MessageSquare, Zap, Menu, X, ChevronLeft, ChevronRight, Layers, FolderTree, Utensils, SlidersHorizontal, Boxes, PlusCircle, Sparkles, Megaphone, HeartHandshake, PhoneCall, PanelBottom, Globe, MessageSquareQuote, Ticket } from 'lucide-react';
 import { Dialog, DialogContent, DialogTitle, DialogDescription } from '@/components/ui/dialog';
 import { AlertDialog, AlertDialogContent, AlertDialogHeader, AlertDialogTitle, AlertDialogDescription, AlertDialogFooter, AlertDialogCancel, AlertDialogAction } from '@/components/ui/alert-dialog';
 import { Table, TableHeader, TableRow, TableHead, TableBody, TableCell } from '@/components/ui/table';
@@ -9,10 +9,40 @@ import { Select, SelectTrigger, SelectValue, SelectContent, SelectItem } from '@
 import { sample, api, money, type Content, type RecordData, type Kitchen } from '@/lib/kitchen';
 const modules = [['OPERATIONS', 'dashboard', 'analytics', 'orders', 'customers'], ['MENU', 'sections', 'categories', 'items', 'variants', 'addon-groups', 'addons'], ['WEBSITE', 'hero', 'banners', 'about', 'contact', 'footer', 'seo', 'testimonials'], ['MANAGE', 'coupons', 'media', 'settings', 'audit']];
 const title = (v: string) => v.split('-').map(s => s[0].toUpperCase() + s.slice(1)).join(' ');
+
+const getModuleIcon = (m: string) => {
+    switch (m) {
+        case 'dashboard': return <LayoutDashboard size={17} />;
+        case 'analytics': return <BarChart3 size={17} />;
+        case 'orders': return <ShoppingBag size={17} />;
+        case 'customers': return <Users size={17} />;
+        case 'sections': return <Layers size={17} />;
+        case 'categories': return <FolderTree size={17} />;
+        case 'items': return <Utensils size={17} />;
+        case 'variants': return <SlidersHorizontal size={17} />;
+        case 'addon-groups': return <Boxes size={17} />;
+        case 'addons': return <PlusCircle size={17} />;
+        case 'hero': return <Sparkles size={17} />;
+        case 'banners': return <Megaphone size={17} />;
+        case 'about': return <HeartHandshake size={17} />;
+        case 'contact': return <PhoneCall size={17} />;
+        case 'footer': return <PanelBottom size={17} />;
+        case 'seo': return <Globe size={17} />;
+        case 'testimonials': return <MessageSquareQuote size={17} />;
+        case 'coupons': return <Ticket size={17} />;
+        case 'media': return <Image size={17} />;
+        case 'settings': return <Settings size={17} />;
+        case 'audit': return <Shield size={17} />;
+        default: return <BookOpen size={17} />;
+    }
+};
+
 export default function Admin() {
     const [demo, setDemo] = useState(false), [signed, setSigned] = useState(false), [module, setModule] = useState('dashboard'), [data, setData] = useState<Content>(sample), [rows, setRows] = useState<RecordData[]>([]), [orders, setOrders] = useState<any[]>([]), [search, setSearch] = useState(''), [page, setPage] = useState(1), [total, setTotal] = useState(0), [error, setError] = useState(''), [toast, setToast] = useState(''), [loading, setLoading] = useState(false), [editing, setEditing] = useState<RecordData | null>(null), [deleting, setDeleting] = useState<RecordData | null>(null), [settings, setSettings] = useState<Kitchen>(sample.kitchen);
     const [analyticsData, setAnalyticsData] = useState<{ metrics: any; topCards: any[]; sessions: any[]; interests?: any[] } | null>(null);
     const [selectedSession, setSelectedSession] = useState<any | null>(null);
+    const [sidebarOpen, setSidebarOpen] = useState(false);
+    const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
     useEffect(() => { api('auth/me').then(async () => { setSigned(true); setData(await api('public/madhurawada')); }).catch(() => { }); }, []);
     useEffect(() => { if (!toast)
         return; const id = setTimeout(() => setToast(''), 3500); return () => clearTimeout(id); }, [toast]);
@@ -93,10 +123,162 @@ export default function Admin() {
     const field = (key: string, value: unknown) => setEditing(e => e ? ({ ...e, [key]: value }) : null);
     const choose = (key: string, label: string, options: RecordData[]) => <label>{label}<Select value={String(editing?.[key] || '')} onValueChange={v => field(key, v)}><SelectTrigger><SelectValue placeholder={'Choose ' + label.toLowerCase()}/></SelectTrigger><SelectContent>{options.map(o => <SelectItem value={o.id} key={o.id}>{o.name}</SelectItem>)}</SelectContent></Select></label>;
     if (!signed && !demo)
-        return <div className="login-page"><a href="/" className="brand"><span className="brand-icon"><UtensilsCrossed /></span>Madhurawada Home Kitchen</a><div className="login-card"><div className="eyebrow">KITCHEN WORKSPACE</div><h1>A good day starts here.</h1><p>Sign in to manage your menu, website and orders.</p><form className="form-stack" onSubmit={login}><label>Email<input name="email" type="email" defaultValue="admin@madhurawada.com" autoComplete="username" required/></label><label>Password<input name="password" type="password" defaultValue="adminpassword123" autoComplete="current-password" required/></label>{error && <div role="alert" className="error">{error}</div>}<button className="primary">Sign in <ArrowUpRight size={18}/></button></form><div className="login-divider">Preview the workspace</div><button className="outline full" onClick={() => { setDemo(true); setError(''); }}>Explore sample admin</button><small>The sample workspace uses session-only data. It does not change your database or website.</small></div><a href="/">← Back to the menu</a></div>;
+        return <div className="login-page"><a href="/" className="brand"><span className="brand-icon"><UtensilsCrossed /></span>BLR Home Foods</a><div className="login-card"><div className="eyebrow">YOUR OWN HOME · WORKSPACE</div><h1>A good day starts here.</h1><p>Sign in to manage your menu, website and orders.</p><form className="form-stack" onSubmit={login}><label>Email<input name="email" type="email" defaultValue="admin@madhurawada.com" autoComplete="username" required/></label><label>Password<input name="password" type="password" defaultValue="adminpassword123" autoComplete="current-password" required/></label>{error && <div role="alert" className="error">{error}</div>}<button className="primary">Sign in <ArrowUpRight size={18}/></button></form><div className="login-divider">Preview the workspace</div><button className="outline full" onClick={() => { setDemo(true); setError(''); }}>Explore sample admin</button><small>The sample workspace uses session-only data. It does not change your database or website.</small></div><a href="/">← Back to the menu</a></div>;
     const special = ['dashboard', 'analytics', 'orders', 'customers', 'settings', 'audit'];
-    return <div className="admin-shell"><aside className="admin-sidebar"><a className="admin-logo" href="/"><span className="brand-icon"><UtensilsCrossed size={21}/></span><span>Home Kitchen<small>MANAGEMENT STUDIO</small></span></a><div className="kitchen-label">MADHURAWADA <span>⌄</span></div>{modules.map(([label, ...entries]) => <div className="nav-group" key={label}><small>{label}</small>{entries.map(m => <button key={m} className={module === m ? 'active' : ''} onClick={() => { setModule(m); setPage(1); setSearch(''); setError(''); }}>{m === 'dashboard' ? <LayoutDashboard /> : m === 'analytics' ? <BarChart3 /> : m === 'orders' ? <ShoppingBag /> : m === 'settings' ? <Settings /> : m === 'media' ? <Image /> : m === 'customers' ? <Users /> : m === 'audit' ? <Shield /> : <BookOpen />}{title(m)}</button>)}</div>)}<button className="logout" onClick={async () => { if (!demo)
-        await api('auth/logout', 'POST'); setSigned(false); setDemo(false); }}><LogOut size={16}/> Sign out</button></aside><div className="admin-main"><header className="admin-topbar"><span>Kitchen workspace <span className="slash">/</span> {title(module)}</span><a href="/">View website <ArrowUpRight size={15}/></a></header>{demo && <div className="demo-bar">SAMPLE WORKSPACE · Changes last for this session only. PostgreSQL is not connected.</div>}<div className="admin-content"><div className="admin-heading"><div><div className="eyebrow">{module === 'dashboard' ? 'YOUR KITCHEN, AT A GLANCE' : module === 'analytics' ? 'PRE-RELEASE VISITOR STATS & SURVEY' : 'KITCHEN MANAGEMENT'}</div><h1>{module === 'dashboard' ? 'Welcome to your kitchen.' : module === 'analytics' ? 'Visitor Stats & Telemetry' : title(module)}</h1><p>{module === 'dashboard' ? 'A clear view of your orders and daily operations.' : module === 'analytics' ? 'Real-time telemetry tracking who visited, latest seen time, time spent, card clicks, and user journeys.' : `Manage your ${title(module).toLowerCase()} from one place.`}</p></div>{!special.includes(module) && <button className="primary" onClick={() => setEditing({ id: '', name: '', description: '', active: true, sortOrder: 0, ...(module === 'items' ? { price: 0, veg: true, prepTime: 25 } : {}) })}><Plus size={17}/> Add {module === 'items' ? 'item' : 'record'}</button>}</div>{error && <div className="error" role="alert">{error}</div>}{toast && <div className="toast" role="status"><Check size={17}/>{toast}</div>}
+    return (
+      <div className={`admin-shell ${sidebarCollapsed ? 'sidebar-collapsed' : ''}`}>
+        {/* Mobile Backdrop */}
+        {sidebarOpen && (
+          <div
+            className="admin-backdrop"
+            onClick={() => setSidebarOpen(false)}
+            aria-hidden="true"
+          />
+        )}
+
+        {/* Responsive Sidebar */}
+        <aside className={`admin-sidebar ${sidebarOpen ? 'open' : ''} ${sidebarCollapsed ? 'collapsed' : ''}`}>
+          {/* Pinned Header */}
+          <div className="sidebar-header">
+            <a className="admin-logo" href="/">
+              <span className="brand-icon"><UtensilsCrossed size={19} /></span>
+              {!sidebarCollapsed && (
+                <div className="admin-logo-text">
+                  <span className="brand-name">BLR Home Foods</span>
+                  <small>YOUR OWN HOME · STUDIO</small>
+                </div>
+              )}
+            </a>
+            <button
+              className="sidebar-close-btn"
+              onClick={() => setSidebarOpen(false)}
+              aria-label="Close Sidebar"
+            >
+              <X size={18} />
+            </button>
+          </div>
+
+          {/* Kitchen Selector / Status Indicator */}
+          {!sidebarCollapsed && (
+            <div className="kitchen-status-card">
+              <span className="kitchen-status-dot" />
+              <div className="kitchen-status-info">
+                <span className="kitchen-status-name">BLR Home Foods</span>
+                <span className="kitchen-status-sub">Your Own Home · Live</span>
+              </div>
+            </div>
+          )}
+
+          {/* Scrollable Nav Container */}
+          <div className="sidebar-nav-scroll">
+            {modules.map(([label, ...entries]) => (
+              <div className="nav-group" key={label}>
+                {!sidebarCollapsed && <small className="nav-group-label">{label}</small>}
+                <div className="nav-group-items">
+                  {entries.map(m => {
+                    const isActive = module === m;
+                    return (
+                      <button
+                        key={m}
+                        className={`nav-item ${isActive ? 'active' : ''}`}
+                        title={sidebarCollapsed ? title(m) : undefined}
+                        onClick={() => {
+                          setModule(m);
+                          setPage(1);
+                          setSearch('');
+                          setError('');
+                          setSidebarOpen(false);
+                        }}
+                      >
+                        <span className="nav-icon">{getModuleIcon(m)}</span>
+                        {!sidebarCollapsed && <span className="nav-title">{title(m)}</span>}
+                        {!sidebarCollapsed && m === 'orders' && orders.filter(o => o.status === 'PENDING').length > 0 && (
+                          <span className="nav-badge pending">{orders.filter(o => o.status === 'PENDING').length}</span>
+                        )}
+                        {!sidebarCollapsed && m === 'analytics' && (
+                          <span className="nav-badge live">Live</span>
+                        )}
+                      </button>
+                    );
+                  })}
+                </div>
+              </div>
+            ))}
+          </div>
+
+          {/* Pinned Footer */}
+          <div className="sidebar-footer">
+            <div className="sidebar-user-card">
+              <div className="user-avatar">AD</div>
+              {!sidebarCollapsed && (
+                <div className="user-details">
+                  <span className="user-name">Admin Chef</span>
+                  <span className="user-email">admin@madhurawada.com</span>
+                </div>
+              )}
+            </div>
+            <button
+              className="logout-btn"
+              title="Sign out"
+              onClick={async () => {
+                if (!demo) await api('auth/logout', 'POST');
+                setSigned(false);
+                setDemo(false);
+              }}
+            >
+              <LogOut size={16} />
+              {!sidebarCollapsed && <span>Sign out</span>}
+            </button>
+          </div>
+        </aside>
+
+        {/* Admin Main Content */}
+        <div className="admin-main">
+          <header className="admin-topbar">
+            <div className="admin-topbar-left">
+              <button
+                className="admin-menu-toggle"
+                onClick={() => setSidebarOpen(true)}
+                aria-label="Open Navigation Menu"
+              >
+                <Menu size={20} />
+              </button>
+              <button
+                className="admin-collapse-toggle desktop-only"
+                onClick={() => setSidebarCollapsed(!sidebarCollapsed)}
+                title={sidebarCollapsed ? "Expand sidebar" : "Collapse sidebar"}
+              >
+                {sidebarCollapsed ? <ChevronRight size={18} /> : <ChevronLeft size={18} />}
+              </button>
+              <div className="admin-breadcrumbs">
+                <span className="crumb-root">Kitchen workspace</span>
+                <span className="slash">/</span>
+                <span className="crumb-current">{title(module)}</span>
+              </div>
+            </div>
+            <div className="admin-topbar-right">
+              <a href="/" className="view-site-link">
+                <span>View website</span>
+                <ArrowUpRight size={15} />
+              </a>
+            </div>
+          </header>
+          {demo && <div className="demo-bar">SAMPLE WORKSPACE · Changes last for this session only. PostgreSQL is not connected.</div>}
+          <div className="admin-content">
+            <div className="admin-heading">
+              <div>
+                <div className="eyebrow">{module === 'dashboard' ? 'YOUR KITCHEN, AT A GLANCE' : module === 'analytics' ? 'PRE-RELEASE VISITOR STATS & SURVEY' : 'KITCHEN MANAGEMENT'}</div>
+                <h1>{module === 'dashboard' ? 'Welcome to your kitchen.' : module === 'analytics' ? 'Visitor Stats & Telemetry' : title(module)}</h1>
+                <p>{module === 'dashboard' ? 'A clear view of your orders and daily operations.' : module === 'analytics' ? 'Real-time telemetry tracking who visited, latest seen time, time spent, card clicks, and user journeys.' : `Manage your ${title(module).toLowerCase()} from one place.`}</p>
+              </div>
+              {!special.includes(module) && (
+                <button className="primary" onClick={() => setEditing({ id: '', name: '', description: '', active: true, sortOrder: 0, ...(module === 'items' ? { price: 0, veg: true, prepTime: 25 } : {}) })}>
+                  <Plus size={17} /> Add {module === 'items' ? 'item' : 'record'}
+                </button>
+              )}
+            </div>
+            {error && <div className="error" role="alert">{error}</div>}
+            {toast && <div className="toast" role="status"><Check size={17} />{toast}</div>}
         {module === 'dashboard' ? <><div className="stats">{[['Orders loaded', orders.length], ['Awaiting confirmation', orders.filter(o => o.status === 'PENDING').length], ['Preparing', orders.filter(o => o.status === 'PREPARING').length], ['Delivered order value', money(orders.filter(o => o.status === 'DELIVERED').reduce((n, o) => n + o.total / 100, 0))]].map(([label, v]) => <div className="stat" key={label}><small>{label}</small><strong>{v}</strong><span>{demo ? 'No sample transactions' : 'Latest 50 orders · not a full financial report'}</span></div>)}</div><div className="admin-columns"><section className="panel"><div className="panel-heading"><h2>Recent orders</h2><button onClick={() => setModule('orders')}>View all <ArrowUpRight size={16}/></button></div>{orders.length ? orders.slice(0, 5).map(o => <div className="cart-line" key={o.id}><span>{o.customer?.name}</span><b>{money(o.total / 100)}</b><span>{o.status}</span></div>) : <div className="empty"><ShoppingBag size={32}/><h3>Your first order starts a story.</h3><p>Confirmed customer orders will appear here.</p></div>}</section><section className="panel checklist"><h2>Get your kitchen ready</h2>{[['Branding & contact', 'settings'], ['Build your menu', 'items'], ['Tell your story', 'about'], ['Set up your homepage', 'hero']].map(([label, m], i) => <button key={m} onClick={() => setModule(m)}><span>{String(i + 1).padStart(2, '0')}</span>{label}<ArrowUpRight size={17}/></button>)}<div className="notice">Before launch: verify menu prices, allergens, delivery arrangements and premises permissions.</div></section></div></> :
             module === 'analytics' ? <div className="space-y-6">
               {/* Telemetry Summary Metric KPI Cards */}
@@ -193,7 +375,7 @@ export default function Admin() {
                         <TableHead>Customer Name</TableHead>
                         <TableHead>WhatsApp Phone</TableHead>
                         <TableHead>Preferred Meal</TableHead>
-                        <TableHead>Madhurawada Area</TableHead>
+                        <TableHead>BLR Locality</TableHead>
                         <TableHead>Special Requests</TableHead>
                         <TableHead>Registered</TableHead>
                         <TableHead>Action</TableHead>
@@ -233,7 +415,7 @@ export default function Admin() {
                             <TableCell>
                               <a
                                 href={`https://wa.me/91${it.phone}?text=${encodeURIComponent(
-                                  `Hello ${it.name}! Thank you for registering your interest in Madhurawada Home Kitchen. We are launching service soon!`
+                                  `Hello ${it.name}! Thank you for registering your interest in BLR Home Foods — Your Own Home. We are launching service soon!`
                                 )}`}
                                 target="_blank"
                                 rel="noreferrer"
@@ -573,5 +755,5 @@ export default function Admin() {
     catch (e) {
         setError((e as Error).message);
     } }}/></label>{module === 'hero' && <label>Button text<input value={String(editing?.cta || '')} onChange={e => field('cta', e.target.value)}/></label>}<label>Display order<input type="number" min={0} value={Number(editing?.sortOrder || 0)} onChange={e => field('sortOrder', Number(e.target.value))}/></label><label className="switch-label"><Switch checked={editing?.active !== false} onCheckedChange={v => field('active', v)}/> Visible / active</label>{error && <div className="error">{error}</div>}<button className="primary">Save changes <Check size={17}/></button></form></DialogContent></Dialog><AlertDialog open={!!deleting} onOpenChange={v => { if (!v)
-        setDeleting(null); }}><AlertDialogContent><AlertDialogHeader><AlertDialogTitle>Delete {deleting?.name}?</AlertDialogTitle><AlertDialogDescription>This record will be removed from the active CMS. Records with children must be cleared first.</AlertDialogDescription></AlertDialogHeader><AlertDialogFooter><AlertDialogCancel>Keep record</AlertDialogCancel><AlertDialogAction onClick={remove}>Delete record</AlertDialogAction></AlertDialogFooter></AlertDialogContent></AlertDialog></div>;
+        setDeleting(null); }}><AlertDialogContent><AlertDialogHeader><AlertDialogTitle>Delete {deleting?.name}?</AlertDialogTitle><AlertDialogDescription>This record will be removed from the active CMS. Records with children must be cleared first.</AlertDialogDescription></AlertDialogHeader><AlertDialogFooter><AlertDialogCancel>Keep record</AlertDialogCancel><AlertDialogAction onClick={remove}>Delete record</AlertDialogAction></AlertDialogFooter></AlertDialogContent></AlertDialog></div>);
 }

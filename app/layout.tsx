@@ -8,8 +8,8 @@ export const viewport: Viewport = {
 };
 
 export const metadata: Metadata = {
-  title: "Madhurawada Home Kitchen",
-  description: "Home-style Andhra meals in Madhurawada, Visakhapatnam. Sample menu and kitchen workspace.",
+  title: "BLR Home Foods · Your Own Home",
+  description: "BLR Home Foods — Your Own Home. Authentic, homestyle wholesome meals and fresh delicacies prepared with love.",
   other: {
     "codex-preview": "development",
   },

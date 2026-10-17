@@ -78,7 +78,7 @@ export default function CustomerStorefront() {
   const [interestName, setInterestName] = useState('');
   const [interestPhone, setInterestPhone] = useState('');
   const [interestMeal, setInterestMeal] = useState('Lunch & Dinner');
-  const [interestArea, setInterestArea] = useState('Madhurawada');
+  const [interestArea, setInterestArea] = useState('Rajanukunte');
   const [interestNote, setInterestNote] = useState('');
   const [interestLoading, setInterestLoading] = useState(false);
   const [interestSubmitted, setInterestSubmitted] = useState(false);
@@ -108,7 +108,7 @@ export default function CustomerStorefront() {
     setInterestLoading(true);
     try {
       await api('public/madhurawada/interest', 'POST', {
-        name: interestName || customer?.name || 'Madhurawada Resident',
+        name: interestName || customer?.name || 'BLR Resident',
         phone: cleanP,
         mealPreference: interestMeal,
         preferredArea: interestArea,
@@ -285,8 +285,8 @@ export default function CustomerStorefront() {
   const items = rows('items').filter((i) => categories.some((c) => c.id === i.categoryId));
   const banners = rows('banners');
   const hero = rows('hero')[0] || {
-    name: 'Authentic Homestyle Andhra Meals & Tiffins',
-    description: 'Made fresh with pure ground spices, cold-pressed oils, and traditional family recipes. Delivered hot around Madhurawada.',
+    name: 'Comfort Food. Made Like Home.',
+    description: 'Freshly prepared meals, familiar flavours, and the comfort of home in every bite. Prepared in small batches with cold-pressed oils & traditional ground spices.',
     cta: 'Explore Our Menu',
     image: 'https://images.unsplash.com/photo-1589301760014-d929f3979dbc?auto=format&fit=crop&w=1200&q=80',
   };
@@ -410,9 +410,9 @@ export default function CustomerStorefront() {
 
   const openWhatsAppOrder = () => {
     trackVisitorEvent('WHATSAPP_CLICK', 'WhatsApp Order Button');
-    const waNumber = (kitchen.whatsapp || '9704156957').replace(/[^0-9]/g, '');
+    const waNumber = (kitchen.whatsapp || '7760902191').replace(/[^0-9]/g, '');
     const targetNumber = waNumber.startsWith('91') ? waNumber : `91${waNumber}`;
-    const message = `Hello ${kitchen.name}! I would like to place an order from your Madhurawada home kitchen menu.`;
+    const message = `Hello ${kitchen.name}! I would like to place an order from your BLR Home Foods — Your Own Home menu.`;
     window.open(`https://wa.me/${targetNumber}?text=${encodeURIComponent(message)}`, '_blank');
   };
 
@@ -421,49 +421,113 @@ export default function CustomerStorefront() {
       style={{ '--brand': kitchen.primaryColor || '#e65100' } as React.CSSProperties}
       className="min-h-screen bg-[#faf9f6] w-full max-w-[100vw] overflow-x-hidden relative"
     >
-      {/* Main Moving Sticky Header */}
+      {/* Premium Food-Inspired Navigation Header */}
       <header
-        className={`site-header sticky top-0 z-40 bg-white/95 backdrop-blur-md border-b border-stone-200 ${
-          headerVisible ? 'header-visible shadow-xs' : 'header-hidden shadow-none'
+        className={`site-header sticky top-0 z-40 ${
+          headerVisible ? 'header-visible shadow-sm' : 'header-hidden shadow-none'
         }`}
       >
-        <div className="flex items-center justify-between w-full gap-1.5 sm:gap-4 min-w-0">
-          <a className="brand min-w-0 shrink" href="/">
-            <span className="brand-icon shrink-0">
-              <UtensilsCrossed size={18} />
-            </span>
-            <span className="truncate min-w-0">
-              <span className="text-xs sm:text-base font-bold text-stone-900 block truncate">{kitchen.name}</span>
-              <small className="hidden sm:block text-[9px] tracking-wider text-stone-500 font-normal">PRACTICAL HOMESTYLE FOOD</small>
-            </span>
+        <div className="flex items-center justify-between w-full gap-2 sm:gap-6 min-w-0">
+          {/* Brand Identity with Custom Handi Emblem & Steaming Leaf */}
+          <a className="brand min-w-0 shrink group" href="/">
+            <div className="brand-emblem-wrapper">
+              <div className="brand-emblem-shadow">
+                <svg viewBox="0 0 44 44" className="w-9 h-9 sm:w-11 sm:h-11 shrink-0" fill="none">
+                  {/* Outer warm ring */}
+                  <circle cx="22" cy="22" r="20" fill="url(#brandGrad)" />
+                  <circle cx="22" cy="22" r="19" stroke="#fed7aa" strokeWidth="1" strokeDasharray="2 2" opacity="0.6" />
+                  
+                  {/* Animated rising steam wisps from pot */}
+                  <path d="M17 10 C 16 8, 18 6, 17 4" stroke="#ffffff" strokeWidth="1.2" strokeLinecap="round" opacity="0.8" className="steam-line steam-1" />
+                  <path d="M22 9 C 23 7, 21 5, 22 3" stroke="#ffffff" strokeWidth="1.2" strokeLinecap="round" opacity="0.9" className="steam-line steam-2" />
+                  <path d="M27 10 C 26 8, 28 6, 27 4" stroke="#ffffff" strokeWidth="1.2" strokeLinecap="round" opacity="0.8" className="steam-line steam-3" />
+                  
+                  {/* Traditional Cooking Pot / Handi */}
+                  <path d="M12 18 C 12 16, 32 16, 32 18 L 30 20 C 32 24, 31 29, 22 29 C 13 29, 12 24, 14 20 Z" fill="#ffffff" />
+                  <ellipse cx="22" cy="18" rx="8" ry="1.8" fill="#fed7aa" />
+                  
+                  {/* Crossed Chef Utensils Silhouette */}
+                  <path d="M18 27 L 26 19" stroke="#c2410c" strokeWidth="1.4" strokeLinecap="round" />
+                  <path d="M26 27 L 18 19" stroke="#c2410c" strokeWidth="1.4" strokeLinecap="round" />
+                  
+                  {/* Sprouting Curry Leaf on Pot Rim */}
+                  <path d="M27 16 C 32 14, 34 10, 35 7 C 32 9, 29 12, 27 16 Z" fill="#22c55e" className="logo-leaf" />
+                  
+                  <defs>
+                    <linearGradient id="brandGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                      <stop offset="0%" stopColor="#ea580c" />
+                      <stop offset="50%" stopColor="#c2410c" />
+                      <stop offset="100%" stopColor="#9a3412" />
+                    </linearGradient>
+                  </defs>
+                </svg>
+              </div>
+            </div>
+
+            <div className="flex flex-col min-w-0">
+              <div className="flex items-center gap-1.5">
+                <span className="text-sm sm:text-lg font-serif font-bold text-stone-900 tracking-tight leading-tight group-hover:text-amber-800 transition-colors truncate">
+                  {kitchen.name}
+                </span>
+                <span className="hidden sm:inline-block w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" title="Kitchen Open & Cooking"></span>
+              </div>
+              <span className="text-[8px] sm:text-[9.5px] font-bold tracking-[2.2px] text-amber-700 uppercase leading-none mt-0.5">
+                YOUR OWN HOME
+              </span>
+            </div>
           </a>
 
-          <nav className="hidden lg:flex items-center gap-7 text-sm font-medium text-stone-700">
-            <a href="#menu" className="hover:text-[var(--brand)] transition-colors">Menu</a>
-            <a href="#offers" className="hover:text-[var(--brand)] transition-colors">Offers</a>
-            <a href="#story" className="hover:text-[var(--brand)] transition-colors">Our Story</a>
-            <a href="#contact" className="hover:text-[var(--brand)] transition-colors">Contact Us</a>
+          {/* Desktop Center Navigation Links with Expanding Micro-Indicators */}
+          <nav className="hidden lg:flex items-center gap-8 text-sm font-medium">
+            <a href="#menu" className="nav-link group">
+              <span>Menu</span>
+              <span className="nav-indicator"></span>
+            </a>
+            <a href="#offers" className="nav-link group">
+              <span className="flex items-center gap-1.5">
+                <span>Offers</span>
+                <span className="text-[9px] bg-amber-100 text-amber-800 font-bold px-1.5 py-0.2 rounded-full border border-amber-300">
+                  20% OFF
+                </span>
+              </span>
+              <span className="nav-indicator"></span>
+            </a>
+            <a href="#story" className="nav-link group">
+              <span>Our Story</span>
+              <span className="nav-indicator"></span>
+            </a>
+            <a href="#contact" className="nav-link group">
+              <span>Contact Us</span>
+              <span className="nav-indicator"></span>
+            </a>
           </nav>
 
-          <div className="flex items-center gap-1 sm:gap-2 shrink-0">
-            {/* Customer Account / Registration Trigger */}
+          {/* Right Action Controls: Customer Account, Track Orders, Bag */}
+          <div className="flex items-center gap-1.5 sm:gap-2.5 shrink-0">
+            {/* Customer Account Trigger */}
             <button
               onClick={() => setOpenProfile(true)}
-              className="inline-flex items-center gap-1 px-2 sm:px-3 py-1.5 sm:py-2 text-xs font-semibold rounded-full border border-stone-300 hover:border-amber-400 text-stone-800 bg-white hover:bg-amber-50 shadow-2xs transition-all shrink-0"
+              className="customer-btn inline-flex items-center gap-1.5 px-2.5 sm:px-3.5 py-1.5 sm:py-2 text-xs font-semibold rounded-full shrink-0 cursor-pointer"
               title={customer ? `Account: ${customer.name}` : 'Register / Sign In'}
             >
               {customer ? (
                 <>
-                  <ShieldCheck size={14} className="text-emerald-600 shrink-0" />
-                  <span className="hidden sm:inline max-w-[70px] sm:max-w-[100px] truncate text-xs">{customer.name}</span>
-                  <span className="hidden md:inline text-[10px] bg-stone-100 text-stone-600 px-1.5 py-0.5 rounded font-mono">
+                  <div className="w-5 h-5 rounded-full bg-emerald-100 text-emerald-800 flex items-center justify-center shrink-0">
+                    <ShieldCheck size={13} className="text-emerald-700" />
+                  </div>
+                  <span className="hidden sm:inline max-w-[70px] sm:max-w-[105px] truncate text-xs text-stone-900 font-medium">
+                    {customer.name}
+                  </span>
+                  <span className="hidden md:inline text-[9.5px] bg-stone-100 text-stone-600 px-1.5 py-0.5 rounded font-mono border border-stone-200">
                     {customer.customerCode}
                   </span>
                 </>
               ) : (
                 <>
-                  <User size={14} className="text-amber-600 shrink-0" />
-                  <span className="hidden sm:inline">Sign In</span>
+                  <div className="w-5 h-5 rounded-full bg-amber-100 text-amber-800 flex items-center justify-center shrink-0">
+                    <User size={12} className="text-amber-800" />
+                  </div>
+                  <span className="hidden sm:inline text-xs font-medium text-stone-800">Sign In</span>
                 </>
               )}
             </button>
@@ -477,36 +541,38 @@ export default function CustomerStorefront() {
                   fetchCustomerOrders(customer.phone, customer.id);
                 }
               }}
-              className="hidden md:inline-flex items-center gap-1 sm:gap-1.5 px-2.5 sm:px-3 py-1.5 sm:py-2 text-xs font-semibold rounded-full border border-stone-300 hover:border-stone-400 text-stone-800 bg-stone-50 hover:bg-white shadow-2xs transition-all shrink-0"
-              title="Track Orders"
+              className="track-orders-btn hidden md:inline-flex items-center gap-1.5 px-3 py-1.5 sm:py-2 text-xs font-semibold rounded-full shrink-0 cursor-pointer"
+              title="Track Live Orders"
             >
-              <Clock size={14} className="text-amber-600 shrink-0" />
-              <span className="hidden sm:inline">Track Orders</span>
+              <Clock size={14} className="text-amber-700 shrink-0" />
+              <span className="text-stone-800 font-medium">Track Orders</span>
             </button>
 
-            {/* Cart Bag Trigger */}
+            {/* Premium Animated Shopping Bag Trigger */}
             <button
-              className="bag !py-1 !px-2 sm:!py-1.5 sm:!px-3 shrink-0"
+              className="bag-btn"
               onClick={() => {
                 setOpenCart(true);
                 setOrderResult(null);
               }}
               aria-label={`Shopping bag with ${totalItemCount} items`}
             >
-              <ShoppingBag size={16} />
+              <ShoppingBag size={15} />
               <span className="hidden sm:inline text-xs font-semibold">Bag</span>
-              <b className="text-xs">{totalItemCount}</b>
+              <span className={`bag-count ${totalItemCount > 0 ? 'bag-count-active' : ''}`}>
+                {totalItemCount}
+              </span>
             </button>
 
-            {/* Mobile Menu 3-Lines Hamburger Button */}
+            {/* Mobile Navigation Menu Toggle */}
             <button
               type="button"
               onClick={() => setMobileMenuOpen(true)}
-              className="lg:hidden flex items-center justify-center p-1.5 sm:p-2 rounded-lg border border-stone-300 bg-stone-100 hover:bg-stone-200 active:bg-stone-300 text-stone-800 focus:outline-none focus:ring-2 focus:ring-amber-500 transition-colors shrink-0"
+              className="lg:hidden flex items-center justify-center p-2 rounded-full border border-amber-900/15 bg-white/90 hover:bg-amber-50 text-stone-800 shadow-xs transition-colors shrink-0 cursor-pointer"
               aria-label="Open navigation menu"
               title="Open Navigation Menu"
             >
-              <Menu size={20} className="stroke-[2.4] text-stone-800" />
+              <Menu size={18} className="stroke-[2.2] text-stone-800" />
             </button>
           </div>
         </div>
@@ -527,18 +593,31 @@ export default function CustomerStorefront() {
             {/* Drawer Header */}
             <div className="p-4 border-b border-stone-200 bg-white flex items-center justify-between sticky top-0 z-10 shadow-2xs">
               <div className="flex items-center gap-2.5">
-                <span className="brand-icon w-9 h-9">
-                  <UtensilsCrossed size={18} />
-                </span>
+                <div className="w-9 h-9 shrink-0">
+                  <svg viewBox="0 0 44 44" className="w-full h-full" fill="none">
+                    <circle cx="22" cy="22" r="20" fill="url(#drawerGrad)" />
+                    <circle cx="22" cy="22" r="19" stroke="#fed7aa" strokeWidth="1" strokeDasharray="2 2" opacity="0.6" />
+                    <path d="M12 18 C 12 16, 32 16, 32 18 L 30 20 C 32 24, 31 29, 22 29 C 13 29, 12 24, 14 20 Z" fill="#ffffff" />
+                    <path d="M18 27 L 26 19" stroke="#c2410c" strokeWidth="1.4" strokeLinecap="round" />
+                    <path d="M26 27 L 18 19" stroke="#c2410c" strokeWidth="1.4" strokeLinecap="round" />
+                    <path d="M27 16 C 32 14, 34 10, 35 7 C 32 9, 29 12, 27 16 Z" fill="#22c55e" />
+                    <defs>
+                      <linearGradient id="drawerGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" stopColor="#ea580c" />
+                        <stop offset="100%" stopColor="#9a3412" />
+                      </linearGradient>
+                    </defs>
+                  </svg>
+                </div>
                 <div>
-                  <div className="text-sm font-bold text-stone-900 leading-tight">{kitchen.name}</div>
-                  <div className="text-[10px] text-amber-800 font-semibold tracking-wider">MADHURAWADA KITCHEN</div>
+                  <div className="text-sm font-serif font-bold text-stone-900 leading-tight">{kitchen.name}</div>
+                  <div className="text-[9px] text-amber-800 font-bold tracking-widest uppercase">YOUR OWN HOME</div>
                 </div>
               </div>
               <button
                 type="button"
                 onClick={() => setMobileMenuOpen(false)}
-                className="w-8 h-8 rounded-full bg-stone-100 hover:bg-stone-200 text-stone-700 flex items-center justify-center transition-colors"
+                className="w-8 h-8 rounded-full bg-stone-100 hover:bg-stone-200 text-stone-700 flex items-center justify-center transition-colors cursor-pointer"
                 aria-label="Close menu"
               >
                 <X size={18} />
@@ -690,7 +769,7 @@ export default function CustomerStorefront() {
               </button>
 
               <div className="text-[11px] text-stone-500 text-center flex items-center justify-center gap-1">
-                <span>📍 Serving Madhurawada, Visakhapatnam</span>
+                <span>📍 Serving Rajanukunte, Yelahanka & North Bengaluru</span>
               </div>
             </div>
           </div>
@@ -698,98 +777,193 @@ export default function CustomerStorefront() {
       )}
 
       <main>
-        {/* Hero Section */}
+        {/* Premium Editorial Hero Section */}
         {hero && (
-          <section className="hero bg-gradient-to-br from-[#faf8f4] via-[#f7f3ec] to-[#f4eee5] border-b border-stone-200/80 overflow-hidden">
-            <div className="hero-copy py-8 sm:py-12 lg:py-16 px-[5%] sm:px-[7%] lg:px-[8%]">
-              <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-amber-500/10 border border-amber-500/20 text-amber-900 text-xs font-semibold tracking-wide w-fit mb-4">
-                <span className="relative flex h-2 w-2">
-                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-amber-500 opacity-75"></span>
-                  <span className="relative inline-flex rounded-full h-2 w-2 bg-amber-600"></span>
-                </span>
-                <span>Authentic Andhra Home Cooking · Madhurawada</span>
-              </div>
+          <section className="hero-editorial">
+            <div className="hero-ambient-ring-1"></div>
+            <div className="hero-ambient-ring-2"></div>
 
-              <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-[52px] font-serif font-normal text-stone-900 leading-[1.14] tracking-tight mb-4">
-                {hero.name.includes('Andhra') ? (
-                  <>
-                    Authentic Homestyle <br className="hidden sm:inline" />
-                    <span className="bg-gradient-to-r from-amber-700 via-orange-600 to-amber-800 bg-clip-text text-transparent font-medium">
-                      Andhra Comfort Food
-                    </span>
-                  </>
-                ) : (
-                  hero.name
-                )}
-              </h1>
-
-              <p className="text-stone-600 text-sm sm:text-base leading-relaxed max-w-lg mb-6">
-                {hero.description}
-              </p>
-
-              {/* Side-by-Side Modern CTA Buttons */}
-              <div className="flex flex-row items-center gap-2.5 sm:gap-4 my-2">
-                <a
-                  className="inline-flex items-center justify-center gap-1.5 sm:gap-2 px-4 sm:px-6 py-3 sm:py-3.5 bg-gradient-to-r from-orange-600 via-amber-600 to-amber-700 hover:from-orange-700 hover:to-amber-800 text-white font-semibold text-xs sm:text-base rounded-full shadow-md hover:shadow-lg transition-all duration-200 transform hover:-translate-y-0.5 whitespace-nowrap"
-                  href="#menu"
-                >
-                  <span>{hero.cta || 'Order Fresh Meals'}</span>
-                  <ArrowUpRight size={16} className="sm:w-[18px] sm:h-[18px]" />
-                </a>
-
-                <button
-                  onClick={openWhatsAppOrder}
-                  className="inline-flex items-center justify-center gap-1.5 sm:gap-2 px-3.5 sm:px-5 py-3 sm:py-3.5 bg-emerald-600 hover:bg-emerald-700 text-white font-semibold text-xs sm:text-base rounded-full shadow-sm hover:shadow-md transition-all duration-200 transform hover:-translate-y-0.5 whitespace-nowrap border border-emerald-500/40"
-                >
-                  <MessageSquare size={16} className="sm:w-[18px] sm:h-[18px]" />
-                  <span>WhatsApp Order</span>
-                </button>
-              </div>
-
-              {/* Small Impression / Interested Button */}
-              <div className="mt-3 flex items-center gap-2 flex-wrap">
-                <button
-                  type="button"
-                  onClick={() => {
-                    setOpenInterest(true);
-                    trackVisitorEvent('INTEREST_CLICK', 'Hero Small Interested Button');
-                  }}
-                  className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-amber-500/10 hover:bg-amber-500/20 border border-amber-400/40 text-amber-900 text-xs font-semibold transition-all hover:scale-[1.02] active:scale-95 cursor-pointer shadow-2xs"
-                >
-                  <Heart size={13} className="text-rose-600 fill-rose-600 shrink-0 animate-pulse" />
-                  <span>Waiting for Service? I'm Interested</span>
-                  <span className="text-[10px] bg-amber-200/90 text-amber-950 px-1.5 py-0.5 rounded-full font-bold">20% OFF</span>
-                </button>
-              </div>
-
-              {/* Authentic Kitchen Highlights */}
-              <div className="flex flex-wrap items-center gap-2.5 pt-4 border-t border-stone-200/80 mt-5 text-xs text-stone-600 font-medium">
-                <UtensilsCrossed size={14} className="text-amber-700 shrink-0" />
-                <span>Small-batch home cooking with pure cold-pressed oils & traditional ground spices</span>
-              </div>
-            </div>
-
-            {/* Hero Visual with Floating Glass Cards */}
-            <div className="hero-image relative min-h-[320px] sm:min-h-[420px] lg:min-h-full">
-              <img
-                src={hero.image || 'https://images.unsplash.com/photo-1589301760014-d929f3979dbc?auto=format&fit=crop&w=1200&q=80'}
-                alt="Fresh Andhra Meal"
-                className="w-full h-full object-cover"
-              />
-
-              {/* Floating Top Badge */}
-              <div className="absolute top-4 right-4 z-10 bg-black/55 backdrop-blur-md border border-white/20 text-white px-3.5 py-1.5 rounded-full text-xs font-semibold flex items-center gap-1.5 shadow-lg">
-                <Sparkles size={13} className="text-amber-300" />
-                <span>Small Batch · 100% Home Cooked</span>
-              </div>
-
-              {/* Bottom Glass Caption */}
-              <div className="image-caption absolute bottom-5 left-5 right-5 sm:right-auto z-10 bg-stone-950/75 backdrop-blur-md border border-white/15 p-4 rounded-xl text-white shadow-xl">
-                <div className="flex items-center gap-2 mb-1">
-                  <span className="h-2 w-2 rounded-full bg-emerald-400 animate-pulse"></span>
-                  <span className="text-[10px] tracking-widest uppercase font-bold text-emerald-300">MADHURAWADA HOME CHEF</span>
+            <div className="hero-grid-container max-w-[1440px] mx-auto">
+              {/* Left Column: Brand Storytelling & Editorial Typography */}
+              <div className="hero-editorial-copy">
+                {/* Brand Eyebrow Badge */}
+                <div className="inline-flex items-center gap-2.5 px-3.5 py-1.5 rounded-full bg-white/90 border border-amber-500/25 text-stone-800 text-xs font-semibold tracking-wider uppercase mb-5 backdrop-blur-sm shadow-xs w-fit">
+                  <span className="relative flex h-2 w-2">
+                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-500 opacity-75"></span>
+                    <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-600"></span>
+                  </span>
+                  <span className="tracking-widest text-[10.5px] font-bold text-stone-700">
+                    BLR HOME FOODS · MADE WITH CARE
+                  </span>
                 </div>
-                <strong className="text-lg sm:text-xl font-serif block font-medium">Warm, wholesome comfort in every bite.</strong>
+
+                {/* Main Headline */}
+                <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-[60px] font-serif font-normal text-stone-900 leading-[1.08] tracking-tight mb-5">
+                  Comfort Food. <br />
+                  <span className="bg-gradient-to-r from-amber-700 via-orange-600 to-amber-800 bg-clip-text text-transparent font-medium">
+                    Made Like Home.
+                  </span>
+                </h1>
+
+                {/* Supporting Description */}
+                <p className="text-stone-600 text-base sm:text-lg leading-relaxed max-w-lg mb-8 font-light">
+                  Freshly prepared meals, familiar flavours, and the comfort of home in every bite. Prepared in small batches with pure ground spices, cold-pressed oils, and traditional family recipes.
+                </p>
+
+                {/* Side-by-Side Modern CTA Buttons */}
+                <div className="flex flex-wrap items-center gap-3.5 sm:gap-4 mb-7">
+                  <a
+                    href="#menu"
+                    className="inline-flex items-center justify-center gap-2 px-6 sm:px-7 py-3.5 sm:py-4 bg-gradient-to-r from-orange-600 via-amber-600 to-amber-700 hover:from-orange-700 hover:to-amber-800 text-white font-semibold text-sm sm:text-base rounded-full shadow-lg shadow-orange-950/15 hover:shadow-xl hover:shadow-orange-950/25 transition-all duration-300 transform hover:-translate-y-0.5 active:translate-y-0 cursor-pointer"
+                  >
+                    <span>Explore Our Menu</span>
+                    <ArrowUpRight size={18} />
+                  </a>
+
+                  <button
+                    onClick={openWhatsAppOrder}
+                    className="inline-flex items-center justify-center gap-2 px-5 sm:px-6 py-3.5 sm:py-4 bg-emerald-700 hover:bg-emerald-800 text-white font-semibold text-sm sm:text-base rounded-full shadow-md shadow-emerald-950/15 hover:shadow-lg transition-all duration-300 transform hover:-translate-y-0.5 active:translate-y-0 border border-emerald-600/40 cursor-pointer"
+                  >
+                    <MessageSquare size={18} />
+                    <span>Order on WhatsApp</span>
+                  </button>
+                </div>
+
+                {/* Trust & Heritage Indicators */}
+                <div className="flex flex-wrap items-center gap-3 sm:gap-4 text-xs text-stone-600 font-medium pt-5 border-t border-stone-200/80">
+                  <div className="flex items-center gap-1.5">
+                    <Sparkles size={14} className="text-amber-600 shrink-0" />
+                    <span>Freshly prepared</span>
+                  </div>
+                  <span className="text-stone-300">·</span>
+                  <div className="flex items-center gap-1.5">
+                    <Leaf size={14} className="text-emerald-700 shrink-0" />
+                    <span>Small batches</span>
+                  </div>
+                  <span className="text-stone-300">·</span>
+                  <div className="flex items-center gap-1.5">
+                    <Heart size={14} className="text-rose-500 shrink-0" />
+                    <span>Made with care</span>
+                  </div>
+                </div>
+
+                {/* VIP Interest Pill Trigger */}
+                <div className="mt-4">
+                  <button
+                    type="button"
+                    onClick={() => {
+                      setOpenInterest(true);
+                      trackVisitorEvent('INTEREST_CLICK', 'Hero VIP Interest Pill');
+                    }}
+                    className="group inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-amber-500/10 hover:bg-amber-500/20 border border-amber-400/40 text-amber-950 text-xs font-medium transition-all hover:scale-[1.02] active:scale-98 cursor-pointer"
+                  >
+                    <span className="h-1.5 w-1.5 rounded-full bg-amber-600 animate-pulse"></span>
+                    <span>Pre-register in Rajanukunte & Yelahanka for <strong>20% OFF</strong></span>
+                    <ArrowRight size={12} className="text-amber-700 group-hover:translate-x-0.5 transition-transform" />
+                  </button>
+                </div>
+              </div>
+
+              {/* Right Column: Signature Layered Food Centerpiece Experience */}
+              <div className="hero-visual-stage">
+                <div className="hero-plate-wrapper">
+                  {/* Rotating Culinary Stamp / Seal */}
+                  <div className="hero-seal">
+                    <svg viewBox="0 0 120 120" className="w-full h-full">
+                      <defs>
+                        <path id="sealTextPath" d="M 60, 60 m -43, 0 a 43,43 0 1,1 86,0 a 43,43 0 1,1 -86,0" />
+                      </defs>
+                      <circle cx="60" cy="60" r="56" fill="#fffdf9" stroke="#d97706" strokeWidth="1.2" strokeDasharray="3 2" />
+                      <circle cx="60" cy="60" r="32" fill="#fef3c7" stroke="#b45309" strokeWidth="1" />
+                      <text fontSize="7" fontWeight="bold" letterSpacing="2.2" fill="#78350f">
+                        <textPath href="#sealTextPath" startOffset="0%">
+                          ★ BLR HOME FOODS ★ AUTHENTIC HOMESTYLE ★
+                        </textPath>
+                      </text>
+                      <g transform="translate(48, 48)">
+                        <UtensilsCrossed size={24} className="text-amber-800" />
+                      </g>
+                    </svg>
+                  </div>
+
+                  {/* Floating Hand-Drawn Curry Leaf 1 */}
+                  <div className="floating-curry-leaf-1">
+                    <svg viewBox="0 0 48 48" className="w-full h-full" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M6 38 C 10 24, 22 12, 42 6 C 36 22, 28 34, 12 40 Z" fill="#166534" opacity="0.9" />
+                      <path d="M6 38 C 18 26, 30 16, 42 6" stroke="#22c55e" strokeWidth="1.5" strokeLinecap="round" opacity="0.8" />
+                      <path d="M18 27 C 22 28, 25 31, 27 34" stroke="#22c55e" strokeWidth="1" strokeLinecap="round" opacity="0.6" />
+                      <path d="M26 19 C 30 20, 33 22, 35 25" stroke="#22c55e" strokeWidth="1" strokeLinecap="round" opacity="0.6" />
+                    </svg>
+                  </div>
+
+                  {/* Floating Hand-Drawn Curry Leaf 2 */}
+                  <div className="floating-curry-leaf-2">
+                    <svg viewBox="0 0 42 42" className="w-full h-full" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M36 34 C 30 20, 20 10, 4 6 C 10 22, 18 32, 32 38 Z" fill="#15803d" opacity="0.85" />
+                      <path d="M36 34 C 24 22, 14 14, 4 6" stroke="#4ade80" strokeWidth="1.5" strokeLinecap="round" opacity="0.8" />
+                    </svg>
+                  </div>
+
+                  {/* Floating Star Anise Culinary Spice */}
+                  <div className="floating-star-anise">
+                    <svg viewBox="0 0 40 40" className="w-full h-full" fill="#78350f" opacity="0.8">
+                      <path d="M20 2 L23 14 L35 11 L26 20 L35 29 L23 26 L20 38 L17 26 L5 29 L14 20 L5 11 L17 14 Z" />
+                      <circle cx="20" cy="20" r="4" fill="#451a03" />
+                    </svg>
+                  </div>
+
+                  {/* Floating Red Chili Culinary Accent */}
+                  <div className="floating-chili">
+                    <svg viewBox="0 0 36 36" className="w-full h-full" fill="none">
+                      <path d="M8 28 C 14 22, 22 14, 28 6 C 26 16, 20 24, 10 30 Z" fill="#dc2626" opacity="0.85" />
+                      <path d="M28 6 C 30 4, 32 3, 34 4" stroke="#15803d" strokeWidth="2" strokeLinecap="round" />
+                    </svg>
+                  </div>
+
+                  {/* Rising Steam Wisps from Hot Dish */}
+                  <div className="hero-steam-container">
+                    <div className="hero-steam-wisp hero-steam-wisp-1"></div>
+                    <div className="hero-steam-wisp hero-steam-wisp-2"></div>
+                    <div className="hero-steam-wisp hero-steam-wisp-3"></div>
+                  </div>
+
+                  {/* Main Circular Gourmet Food Platter */}
+                  <div className="hero-plate-frame">
+                    <img
+                      src={hero.image || 'https://images.unsplash.com/photo-1589301760014-d929f3979dbc?auto=format&fit=crop&w=1200&q=80'}
+                      alt="Fresh Homestyle Food - BLR Home Foods"
+                    />
+                  </div>
+
+                  {/* Floating Glassmorphic Top Card: Rating & Families */}
+                  <div className="hero-glass-card-top">
+                    <div className="w-9 h-9 rounded-full bg-amber-500/15 border border-amber-500/20 flex items-center justify-center shrink-0 text-amber-700">
+                      <Star size={18} fill="currentColor" />
+                    </div>
+                    <div>
+                      <div className="flex items-center gap-1.5 font-bold text-xs text-stone-900">
+                        <span>4.9 / 5.0</span>
+                        <span className="text-[10px] text-amber-700 font-semibold bg-amber-100 px-1.5 py-0.2 rounded">TOP RATED</span>
+                      </div>
+                      <div className="text-[11px] text-stone-600 leading-tight">
+                        Loved by Rajanukunte & Yelahanka Families
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Floating Glassmorphic Bottom Card: 100% Home Cooked */}
+                  <div className="hero-glass-card-bottom">
+                    <div className="flex items-center gap-2 mb-1">
+                      <span className="h-2 w-2 rounded-full bg-emerald-400 animate-pulse"></span>
+                      <span className="text-[10.5px] tracking-wider uppercase font-bold text-emerald-400">
+                        100% HOMESTYLE KITCHEN
+                      </span>
+                    </div>
+                    <p className="text-xs text-stone-300 font-light leading-snug">
+                      Cold-pressed oils · Ground spices · No excess oiliness
+                    </p>
+                  </div>
+                </div>
               </div>
             </div>
           </section>
@@ -798,7 +972,7 @@ export default function CustomerStorefront() {
         {/* Feature Service Strip */}
         <div className="service-strip">
           <span>
-            <MapPin /> Direct delivery within {kitchen.radius} km of Madhurawada
+            <MapPin /> Direct delivery within {kitchen.radius} km of Rajanukunte
           </span>
           <span>
             <Clock /> {kitchen.hours}
@@ -956,7 +1130,7 @@ export default function CustomerStorefront() {
           )}
 
           <p className="menu-note">
-            All meals are prepared fresh in small batches at our Madhurawada home premises. Custom spice level requests can be added during checkout.
+            All meals are prepared fresh in small batches at our Rajanukunte home kitchen. Custom spice level requests can be added during checkout.
           </p>
         </section>
 
@@ -965,7 +1139,7 @@ export default function CustomerStorefront() {
           <section className="bg-stone-900 text-white py-16 px-[6%] my-12 rounded-3xl mx-[4%]">
             <div className="text-center max-w-xl mx-auto mb-10">
               <div className="text-amber-400 font-bold text-xs tracking-widest uppercase mb-2">NEIGHBOURHOOD REVIEWS</div>
-              <h2 className="text-3xl font-serif">Loved by Madhurawada Families</h2>
+              <h2 className="text-3xl font-serif">Loved by Rajanukunte & Yelahanka Families</h2>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
@@ -1006,13 +1180,30 @@ export default function CustomerStorefront() {
           <section id="contact" className="contact">
             <div>
               <div className="eyebrow">ALWAYS AT YOUR SERVICE</div>
-              <h2>Madhurawada, Visakhapatnam.</h2>
+              <h2>Rajanukunte, Bengaluru.</h2>
             </div>
             <div>
               <MapPin size={24} />
               <h3>{kitchen.address}</h3>
               <p>{kitchen.hours}</p>
               <p className="mt-2 text-stone-600 font-medium">Direct Delivery Radius: Up to {kitchen.radius} km</p>
+              <div className="mt-3 flex flex-wrap gap-2.5">
+                <a
+                  href={`tel:${(kitchen.phone || '7760902191').replace(/[^0-9+]/g, '')}`}
+                  className="inline-flex items-center gap-1.5 px-3.5 py-2 bg-stone-100 hover:bg-stone-200 text-stone-800 rounded-lg text-xs font-semibold transition-colors border border-stone-200"
+                >
+                  <Phone size={14} className="text-amber-700" />
+                  <span>Call: {kitchen.phone || '+91 7760902191'}</span>
+                </a>
+                <button
+                  type="button"
+                  onClick={openWhatsAppOrder}
+                  className="inline-flex items-center gap-1.5 px-3.5 py-2 bg-emerald-50 hover:bg-emerald-100 text-emerald-800 border border-emerald-200 rounded-lg text-xs font-semibold transition-colors cursor-pointer"
+                >
+                  <MessageSquare size={14} className="text-emerald-600" />
+                  <span>WhatsApp: {kitchen.whatsapp || '+91 7760902191'}</span>
+                </button>
+              </div>
               <p className="mt-4 font-mono text-sm text-stone-800 bg-stone-100 p-3 rounded-lg border border-stone-200">
                 {contact.description}
               </p>
@@ -1028,7 +1219,7 @@ export default function CustomerStorefront() {
           <p>{kitchen.description}</p>
         </div>
         <div>
-          <small>© 2026 Madhurawada Home Kitchen · All rights reserved.</small>
+          <small>© 2026 BLR Home Foods · Your Own Home · All rights reserved.</small>
         </div>
       </footer>
 
@@ -1329,7 +1520,7 @@ export default function CustomerStorefront() {
           <DialogTitle>{orderResult ? 'Order Request Received! 🎉' : 'Your Meal Bag'}</DialogTitle>
           <DialogDescription>
             {orderResult
-              ? 'Our kitchen team in Madhurawada is reviewing your order.'
+              ? 'Our kitchen team in BLR is reviewing your order.'
               : 'Review your selected items before sending your order request.'}
           </DialogDescription>
 
@@ -1534,8 +1725,8 @@ export default function CustomerStorefront() {
                       </div>
 
                       <label>
-                        Madhurawada Delivery Address
-                        <textarea name="address" required minLength={10} placeholder="Apartment / Flat number, Landmark in Madhurawada..." />
+                        Rajanukunte / Bengaluru Delivery Address
+                        <textarea name="address" required minLength={10} placeholder="Apartment / Flat number, Landmark in Rajanukunte, Yelahanka..." />
                       </label>
 
                       <label>
@@ -1562,7 +1753,7 @@ export default function CustomerStorefront() {
         <DialogContent className="w-[95vw] max-w-md p-5 sm:p-6 rounded-2xl max-h-[88vh] overflow-y-auto">
           <DialogTitle className="text-xl font-bold text-stone-900 flex items-center gap-2">
             <Sparkles className="text-amber-600" size={22} />
-            Waiting for Madhurawada Home Meals?
+            Waiting for BLR Home Meals?
           </DialogTitle>
           <DialogDescription className="text-xs text-stone-600">
             Tell us you're waiting for our service! We will register your interest and send you a private launch message on WhatsApp plus a 20% discount coupon.
@@ -1576,7 +1767,7 @@ export default function CustomerStorefront() {
               <div className="space-y-1">
                 <h3 className="text-base font-bold text-stone-900">You're On Our VIP Priority List!</h3>
                 <p className="text-xs text-stone-600 max-w-xs mx-auto">
-                  Thank you for supporting our home kitchen. We will message you on WhatsApp the moment cooking begins!
+                  Thank you for supporting BLR Home Foods — Your Own Home. We will message you on WhatsApp the moment cooking begins!
                 </p>
               </div>
               <button
@@ -1640,20 +1831,22 @@ export default function CustomerStorefront() {
                 </div>
 
                 <div>
-                  <label className="block font-semibold text-stone-700 mb-1">Your Madhurawada Area</label>
+                  <label className="block font-semibold text-stone-700 mb-1">Your Delivery Locality (Rajanukunte & North BLR)</label>
                   <select
                     value={interestArea}
                     onChange={(e) => setInterestArea(e.target.value)}
                     className="w-full border border-stone-300 rounded-lg p-2 text-xs bg-white text-stone-900"
                   >
-                    <option value="Mithilapuri VUDA Colony">Mithilapuri Colony</option>
-                    <option value="Car Shed Junction">Car Shed Junction</option>
-                    <option value="Kommadi Junction">Kommadi</option>
-                    <option value="Pothinamallayya Palem (PM Palem)">PM Palem</option>
-                    <option value="Law College / D-Mart Road">Law College / D-Mart</option>
-                    <option value="Marikavalasa">Marikavalasa</option>
-                    <option value="Chandrampalem">Chandrampalem</option>
-                    <option value="Other Area in Madhurawada">Other Madhurawada</option>
+                    <option value="Rajanukunte">Rajanukunte</option>
+                    <option value="Yelahanka New Town">Yelahanka New Town</option>
+                    <option value="Yelahanka Old Town">Yelahanka Old Town</option>
+                    <option value="Doddaballapur Road / Marasandra">Doddaballapur Road / Marasandra</option>
+                    <option value="Adde Vishwanathapura">Adde Vishwanathapura</option>
+                    <option value="Hesaraghatta">Hesaraghatta</option>
+                    <option value="Singanayakanahalli">Singanayakanahalli</option>
+                    <option value="Vidyaranyapura / MS Palya">Vidyaranyapura / MS Palya</option>
+                    <option value="Hebbal / Sahakar Nagar">Hebbal / Sahakar Nagar</option>
+                    <option value="Other Area in North Bengaluru">Other Area in North Bengaluru</option>
                   </select>
                 </div>
               </div>

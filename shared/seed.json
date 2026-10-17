@@ -1,10 +1,12 @@
 {
   "kitchen": {
-    "name": "Madhurawada Home Kitchen",
-    "tagline": "Authentic Homestyle Andhra Meals & Tiffins",
+    "name": "BLR Home Foods",
+    "tagline": "Your Own Home",
     "description": "Thoughtfully cooked in small batches by your neighborhood home chef using pristine ingredients.",
-    "address": "Madhurawada, Visakhapatnam, Andhra Pradesh 530041",
-    "radius": 3,
+    "address": "Rajanukunte, Bangalore North, Bengaluru, Karnataka 560064",
+    "phone": "+91 7760902191",
+    "whatsapp": "+91 7760902191",
+    "radius": 6,
     "hours": "Breakfast: 7:30 AM - 10:30 AM | Lunch: 12:00 PM - 3:00 PM | Dinner: 7:00 PM - 10:00 PM",
     "color": "#e65100",
     "acceptingOrders": true
@@ -12,11 +14,11 @@
   "hero": [
     {
       "id": "hero-1",
-      "name": "Authentic Homestyle Andhra Comfort Food",
-      "description": "Made fresh with pure ground spices, cold-pressed oils, and traditional family recipes. Delivered hot around Madhurawada.",
+      "name": "Comfort Food. Made Like Home.",
+      "description": "Freshly prepared meals, familiar flavours, and the comfort of home in every bite. Prepared in small batches with cold-pressed oils & traditional ground spices.",
       "active": true,
       "sortOrder": 0,
-      "cta": "Order Fresh Meals",
+      "cta": "Explore Our Menu",
       "image": "https://images.unsplash.com/photo-1589301760014-d929f3979dbc?auto=format&fit=crop&w=1200&q=80"
     }
   ],
@@ -33,8 +35,8 @@
     },
     {
       "id": "banner-2",
-      "name": "Daily IT SEZ Lunch Subscriptions Available",
-      "description": "Hygienic, home-cooked thalis delivered right to your office desk at Hill No. 2 & 3.",
+      "name": "Daily Office & Tech Park Lunch Subscriptions",
+      "description": "Hygienic, home-cooked thalis delivered right to your office desk in BLR.",
       "active": true,
       "sortOrder": 1,
       "image": "https://images.unsplash.com/photo-1610192244261-3f33de3f55e4?auto=format&fit=crop&w=1200&q=80",
@@ -45,8 +47,8 @@
   "about": [
     {
       "id": "about-1",
-      "name": "Authentic Andhra Home Cooking Tradition",
-      "description": "Operating right from our family home in Madhurawada. Every meal is cooked fresh in small batches with pure ground spices, cold-pressed oils, and traditional recipes passed down through generations with utmost love, hygiene, and authenticity.",
+      "name": "Authentic Homestyle Cooking Tradition",
+      "description": "Operating right from our family home in Rajanukunte, Bengaluru. Every meal is cooked fresh in small batches with pure ground spices, cold-pressed oils, and traditional recipes passed down through generations with utmost love, hygiene, and authenticity.",
       "active": true,
       "sortOrder": 0,
       "image": "https://images.unsplash.com/photo-1556910103-1c02745aae4d?auto=format&fit=crop&w=800&q=80"
@@ -93,8 +95,8 @@
       "sortOrder": 0
     },
     {
-      "id": "andhra-meals",
-      "name": "Andhra Meals & Thalis",
+      "id": "homestyle-meals",
+      "name": "Homestyle Meals & Thalis",
       "sectionId": "lunch",
       "active": true,
       "sortOrder": 0
@@ -108,7 +110,7 @@
     },
     {
       "id": "local-snacks",
-      "name": "Andhra Evening Snacks",
+      "name": "Evening Snacks & Savories",
       "sectionId": "snacks",
       "active": true,
       "sortOrder": 0
@@ -173,9 +175,9 @@
     },
     {
       "id": "item-veg-meals",
-      "name": "Authentic Andhra Veg Meals Thali",
+      "name": "Authentic Homestyle Veg Meals Thali",
       "description": "Steamed Sona Masoori Rice, Mudda Pappu (Lentils), Homemade Ghee, Seasonal Veg Fry, Spicy Pulusu, Sambar, Rasam, Fresh Majjiga (Curd), & Mango Pickle.",
-      "categoryId": "andhra-meals",
+      "categoryId": "homestyle-meals",
       "sectionId": "lunch",
       "price": 150,
       "veg": true,
@@ -187,9 +189,9 @@
     },
     {
       "id": "item-chicken-meals",
-      "name": "Homestyle Andhra Chicken Curry Meal",
-      "description": "Country-style Andhra spicy chicken gravy cooked with roasted poppy seeds & coconut, served with Rice, Pappu, Veg Curry, Sambar, Rasam & Curd.",
-      "categoryId": "andhra-meals",
+      "name": "Homestyle Chicken Curry Meal",
+      "description": "Homestyle village-style spicy chicken curry cooked with freshly ground spices & coconut, served with Rice, Pappu, Veg Curry, Sambar, Rasam & Curd.",
+      "categoryId": "homestyle-meals",
       "sectionId": "lunch",
       "price": 220,
       "veg": false,
@@ -328,7 +330,7 @@
     {
       "id": "item-millet-sakinalu",
       "name": "Millet Sakinalu",
-      "description": "Traditional concentric rings made using finger millet flour (popular in Telangana & Andhra), laced with sesame seeds.",
+      "description": "Traditional crispy concentric rings made using finger millet flour, roasted cumin & sesame seeds. A wholesome, heritage South Indian savory.",
       "categoryId": "crispy-millet-snacks",
       "sectionId": "snacks",
       "price": 120,
@@ -374,19 +376,27 @@
   "testimonials": [
     {
       "id": "test-1",
-      "name": "Ravi Kumar (Mithilapuri Vuda Colony)",
-      "description": "The Andhra Chicken Meal tastes exactly like what my mother cooks back in West Godavari. Super clean packaging and zero oiliness!",
+      "name": "Ravi Kumar (Rajanukunte)",
+      "description": "The Homestyle Chicken Curry Meal tastes just like comforting home food. Super clean packaging, hot delivery in Rajanukunte, and zero oiliness!",
       "rating": 5,
       "active": true,
       "sortOrder": 0
     },
     {
       "id": "test-2",
-      "name": "Priyanka S. (IT SEZ Employee)",
-      "description": "I subscribed to their lunch thali box. It arrives warm right at 1:00 PM every weekday. Healthy, tasty, and reasonably priced.",
+      "name": "Priyanka S. (IT Professional, Yelahanka)",
+      "description": "I subscribed to their lunch thali box. It arrives warm right at 1:00 PM every weekday to our office near Yelahanka. Healthy, tasty, and reasonably priced.",
       "rating": 5,
       "active": true,
       "sortOrder": 1
+    },
+    {
+      "id": "test-3",
+      "name": "Anand Murthy (Doddaballapur Road Resident)",
+      "description": "Finding authentic, clean home-cooked food around Rajanukunte was so hard until BLR Home Foods started. The Veg Thali and Sambar taste like home!",
+      "rating": 5,
+      "active": true,
+      "sortOrder": 2
     }
   ],
   "coupons": [
@@ -402,8 +412,8 @@
   "contact": [
     {
       "id": "contact-1",
-      "name": "Madhurawada Home Kitchen Operations",
-      "description": "Madhurawada, Visakhapatnam, Andhra Pradesh 530041. Phone / WhatsApp: +91 9704156957. Email: orders@madhurawadakitchen.in",
+      "name": "BLR Home Foods Operations",
+      "description": "Rajanukunte, Bangalore North, Bengaluru, Karnataka 560064 (Near Yelahanka). Phone / WhatsApp: +91 7760902191. Email: orders@blrhomefoods.in",
       "active": true,
       "sortOrder": 0
     }
@@ -411,8 +421,8 @@
   "footer": [
     {
       "id": "footer-1",
-      "name": "Madhurawada Home Kitchen",
-      "description": "Pure home-cooked happiness. Small batch cooking with love, hygienic preparation, and fast local delivery in Madhurawada.",
+      "name": "BLR Home Foods",
+      "description": "Your Own Home. Small batch cooking with love, hygienic preparation, and fast local delivery.",
       "active": true,
       "sortOrder": 0
     }
@@ -420,8 +430,8 @@
   "seo": [
     {
       "id": "seo-home",
-      "name": "Madhurawada Home Kitchen | Authentic Andhra Meals & Tiffins",
-      "description": "Order home-cooked Andhra meals, tiffins, and biryani online in Madhurawada, Visakhapatnam.",
+      "name": "BLR Home Foods | Your Own Home Authentic Meals",
+      "description": "Order fresh home-cooked South Indian meals, tiffins, and wholesome thalis online from BLR Home Foods — Your Own Home.",
       "active": true,
       "sortOrder": 0
     }

@@ -793,8 +793,8 @@ app.post('/api/public/:slug/interest', rateLimit({ windowMs: 60000, limit: 15 })
     const recordData = {
       name: (name || 'Valued Resident').trim(),
       phone: cleanPhone,
-      mealPreference: mealPreference || 'Authentic Andhra Meals',
-      preferredArea: preferredArea || 'Madhurawada',
+      mealPreference: mealPreference || 'Authentic Homestyle Meals',
+      preferredArea: preferredArea || 'Rajanukunte',
       note: note || '',
       sessionId: sessionId || '',
       createdAt: new Date().toISOString(),
@@ -813,7 +813,7 @@ app.post('/api/public/:slug/interest', rateLimit({ windowMs: 60000, limit: 15 })
 
     res.status(201).json({
       success: true,
-      message: "Thank you! You're on our priority VIP list! We will notify you on WhatsApp the moment live kitchen service begins in Madhurawada.",
+      message: "Thank you! You're on our priority VIP list! We will notify you on WhatsApp the moment live kitchen service begins in Rajanukunte, Bengaluru.",
     });
   } catch (err: any) {
     console.error('Service interest error:', err);
