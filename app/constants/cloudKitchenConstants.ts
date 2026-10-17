@@ -9,8 +9,9 @@ export const APP_CONFIG = {
   // Local development fallback: 'http://localhost:4000'
   // Deployed production backend (Render):
   API_BASE_URL:
-    process.env.VITE_API_BASE_URL ||
     process.env.NEXT_PUBLIC_API_BASE_URL ||
+    process.env.VITE_API_BASE_URL ||
+    process.env.BACKEND_ORIGIN ||
     'https://madhurawada-backend.onrender.com',
   CLOUDINARY: {
     CLOUD_NAME: 'dad5lcdoy',

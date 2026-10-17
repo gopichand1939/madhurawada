@@ -9,14 +9,30 @@ export async function OPTIONS() {
   });
 }
 
+function resolveMediaTarget(reqUrl: string): URL {
+  const url = new URL(reqUrl);
+  let base = (
+    process.env.NEXT_PUBLIC_API_BASE_URL ||
+    process.env.VITE_API_BASE_URL ||
+    process.env.BACKEND_ORIGIN ||
+    'http://localhost:4000'
+  ).trim().replace(/\/+$/, '');
+
+  if (base.endsWith('/api')) {
+    base = base.slice(0, -4);
+  }
+
+  return new URL(url.pathname, base);
+}
+
 export async function GET(req: Request) {
-  const origin = process.env.BACKEND_ORIGIN || 'http://localhost:4000';
   const url = new URL(req.url);
   if (!/^\/media\/[a-zA-Z0-9_-]+\.(jpg|png|webp)$/.test(url.pathname)) {
     return new Response('Not found', { status: 404 });
   }
   try {
-    const r = await fetch(new URL(url.pathname, origin));
+    const target = resolveMediaTarget(req.url);
+    const r = await fetch(target);
     return new Response(r.body, {
       status: r.status,
       headers: {

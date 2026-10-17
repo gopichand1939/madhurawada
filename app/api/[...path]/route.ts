@@ -13,11 +13,26 @@ export async function OPTIONS(req: Request) {
   });
 }
 
+function resolveBackendTarget(reqUrl: string): URL {
+  const url = new URL(reqUrl);
+  let base = (
+    process.env.NEXT_PUBLIC_API_BASE_URL ||
+    process.env.VITE_API_BASE_URL ||
+    process.env.BACKEND_ORIGIN ||
+    'http://localhost:4000'
+  ).trim().replace(/\/+$/, '');
+
+  // Strip trailing /api if user provided it, since incoming pathname already includes /api
+  if (base.endsWith('/api') && url.pathname.startsWith('/api')) {
+    base = base.slice(0, -4);
+  }
+
+  return new URL(url.pathname + url.search, base);
+}
+
 async function proxy(req: Request) {
   const reqOrigin = req.headers.get('origin') || '*';
-  const origin = process.env.BACKEND_ORIGIN || 'http://localhost:4000';
-  const url = new URL(req.url);
-  const target = new URL(url.pathname + url.search, origin);
+  const target = resolveBackendTarget(req.url);
   const headers = new Headers();
   for (const key of ['content-type', 'cookie', 'x-order-token', 'origin', 'authorization']) {
     const v = req.headers.get(key);
