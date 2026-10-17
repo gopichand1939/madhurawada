@@ -17,6 +17,8 @@ const nextConfig = {
       },
     ],
   },
+  // Allow all dev origins without restriction
+  allowedDevOrigins: ["*"],
   async headers() {
     return [
       {
