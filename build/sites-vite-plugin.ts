@@ -123,13 +123,8 @@ export function sites({ mockAuth = true } = {}): Plugin {
           return;
         }
 
-        if (
-          (request.headers.origin && request.headers.origin !== url.origin) ||
-          request.headers["sec-fetch-site"] === "cross-site"
-        ) {
-          respond(response, 403);
-          return;
-        }
+        // Do not restrict origin for frontend application
+        // if ((request.headers.origin && request.headers.origin !== url.origin) || request.headers["sec-fetch-site"] === "cross-site") { respond(response, 403); return; }
 
         if (
           request.headers["next-router-prefetch"] !== undefined ||

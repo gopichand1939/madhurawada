@@ -16,40 +16,30 @@ const db = new PrismaClient();
 const app = express();
 
 const hash = (v: string) => createHash('sha256').update(v).digest('hex');
-const isAllowedOrigin = (reqOrigin?: string) => {
-  if (!reqOrigin) return true;
-  if (/^https?:\/\/localhost(:\d+)?$/.test(reqOrigin)) return true;
-  if (/^https?:\/\/127\.0\.0\.1(:\d+)?$/.test(reqOrigin)) return true;
-  if (!process.env.FRONTEND_ORIGIN || process.env.FRONTEND_ORIGIN === '*') return true;
-  const allowed = process.env.FRONTEND_ORIGIN.split(',').map((v) => v.trim());
-  return allowed.includes(reqOrigin);
-};
+const isAllowedOrigin = (_reqOrigin?: string) => true;
 
-app.use(helmet());
+app.use(
+  helmet({
+    crossOriginResourcePolicy: false,
+    crossOriginOpenerPolicy: false,
+  })
+);
 app.use(
   cors({
     origin: (requestOrigin, callback) => {
-      if (isAllowedOrigin(requestOrigin)) {
-        callback(null, requestOrigin || true);
-      } else {
-        callback(null, true);
-      }
+      // Unrestricted origin: echo requestOrigin or true to support all origins with credentials
+      callback(null, requestOrigin || true);
     },
     credentials: true,
+    methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'],
+    allowedHeaders: ['*'],
   })
 );
 app.use(express.json({ limit: '100kb' }));
 app.use(rateLimit({ windowMs: 60000, limit: 120 }));
 
-app.use((req, res, next) => {
-  if (
-    !['GET', 'HEAD', 'OPTIONS'].includes(req.method) &&
-    req.headers.origin &&
-    !isAllowedOrigin(req.headers.origin)
-  ) {
-    res.status(403).json({ error: 'Origin not allowed' });
-    return;
-  }
+// Origin restrictions removed: any origin is permitted across all methods
+app.use((_req, _res, next) => {
   next();
 });
 
